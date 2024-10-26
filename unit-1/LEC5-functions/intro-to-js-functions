@@ -1,0 +1,224 @@
+Javascript Functions 
+
+- Concepts - 
+    What is a function?
+        A FUNCTION is a reusable block of code written to provide a single purpose. With a function, you can store code that can be used conveniently as times as you wish without having to rewrite the code each time. They are a building block of JS. 
+
+        A FUNCTION can also take in data as input and return a single piece of output data, including complex data or other functions. 
+
+    Why are FUNCTIONS essential in programming?
+        - Tackle Complexity:
+            We typically tackle a complex task by breaking it down into smaller steps. Functions allow usto into more manageable parts of code. 
+
+        - Code Reuse:
+            Functions help make our code DRY (do not repeat yourself) by creating reusable code that can be called over and often.
+
+        - Documentation and Debugging:
+            Naming functions appropriately helps document what a functions job is, making easier to find and fix code. 
+
+- Fundamentals -
+    Function Syntax:
+        function name() { // 1 & 2
+            statements; 3a.
+            return statement; 3b.
+        };
+
+        1. function keyword
+        2. name of the function. Any parameters a function takes goes in ()
+        3. Curly braces.
+        3a. The statement of the function itself.
+        3b. What the function should return. 
+    
+    Declaring a function:
+        Functions should be named descriptively, but not too detailed. Try to boil a name down to be discriptive of what is doing, but not too basic.
+            ie:
+            function printBanner(){
+                console.log('=======================');
+                console.log('Insert Banner Text Here');
+                console.log('=======================');
+            }
+    
+    Calling a function:
+        Defining a function does not execute it, a function must be called for it to run. To call printBanner, we would type the following.
+            
+            printBanner(); //Prints the above console.logs in printBanner.
+
+        The beauty of the functions is their reusablity. If we wanted to log whats in printBanner multiple times, we could by calling it again.
+
+            printBanner();
+            printBanner();
+
+- Parameters and Arguments - 
+    Defining parameters and arguments:
+        Functions are designed to take data input. You might have wondered why there is a empty set of parenthesis in the basic syntax.
+        
+        When writing a function, we can define place holders to accept data that will input into our function. These placeholders are known as PARAMETERS. A more complete function syntax would include parameters. Example below. 
+            
+            function name(parameter1, parameter2, ... parameterN) {
+                statements;
+                return statements;
+            };
+
+        Parameters act as local variables within a function and can act as placeholder for any data.
+
+        Let's add a name parameter to our sayHello(); function
+
+            function sayHello(name) {
+                console.log(`Hello ${name}`);
+            }
+
+        To call the function and use the parameter, we can place our value of name in the parenthesis.
+
+            sayHello('Ryan'); // Prints Hello Ryan
+
+        Our value entered in the parenthesis is the ARGUMENT. Any argument we pass through will be assigned to the corresponding parameter. Lets return to the printBanner function and make it more dyname.
+
+            function printBanner(text) {
+                console.log('=======================');
+                console.log(text);
+                console.log('=======================');
+            }
+
+        We can even pass variables into fuctions. 
+
+    How to declare a function with multiple parameters:
+        A function can take up to 255 parameters. When defining a function, parameters are added between the () and separated by a comma. 
+            ie:
+            function add(numA, numB) {
+                return numA + numB;
+            }
+        
+        To avoid confusion, name your parameters sensibly and be mindful of the data types that are passed in. 
+
+            add (1, 5); // returns 6
+
+        Arguments are ACTUAL values.
+        Parameters are PLACEHOLDERS
+
+- Return Values -
+    What is a return value?:
+        A return value is the output of a function. If a function does not explicitly return a value, it defaults to returning 'undefined.' Often, you want to use the return of a function for further operations. In such cases, the return statement is used to specify what value a function should output. 
+
+    The RETURN statement:
+        Use the RETURN keyword to return a value from a function. The return keyword can only be used inside of functions. When used, it stops the execution of a function, and the function evaluates to the return value. 
+            ie:
+
+            function addOne(num) {
+                return num + 1;
+            };
+
+            console.log(addOne(3)); // Prints 4.
+
+    Storing and using the return value of a function:
+        It is often useful to store and return the value of a function. We can assign the the return value of a function to a variable, like any other value. 
+
+        For example, if we wanted to store the value of invoking addOne() and passing three as an arguement, we could do something like this:
+
+            function addOne(num) {
+                return num + 1;
+            }; // addOne(3) evaluates to 4
+
+            const incrementedNum = addOne(3); // incrementedSum === 4
+
+            console.log(incrementedSum); // Prints 4.
+
+    Bringing it all together: 
+        For a more involved example, lets imagine we a have a shopping cart that needs to calculate tax when the user is checking out. We can use a calculateTax() function to figure out the amount of tax due, then store the return value to a variable taxAmount to do other functions.
+
+            const cartValue = 100;
+            
+            function calculateTax(cartValue) {
+                const taxDue = cartValue * 0.07;
+                return taxDue;
+            };
+
+            function calculateTotal(cartValue) {
+                return cartValue + calculateTax
+            };
+
+            console.log(calculateTotal(100));
+
+- Expressions - 
+    Syntax:
+        So far, we've covered function declarations, but you should be aware of another syntax for writign a function: FUNCTION EXPRESSIONS. 
+
+        To get a sense of how they're different, lets look at a function declaration: 
+            
+            ie:
+            function add(numA, numB) {
+                return numA + numB;
+            };
+
+        As function expression, the same function would look like this:
+
+            ie:
+            const add = function(numA, numB) {
+                return numA + numB;
+            };
+
+        Syntax breakdown:
+            1. const keyword. Const should be used if function expression is assigned to a variable.
+            2. name of the function =
+            3. function keyword (param)s
+            4. comma separated params
+            5. Body of the function indicated why curly braces.
+            5a. Statement of function
+            5b. return statement.
+
+    Function Expressions: Assigning a function to a variable:
+        Function Expressions are declared the same way as variables. In this case, we are assigning a function to a variable, instead of a string, number etc. Note that the function itself has no name. This allows us to create ANONYMOUS functions. 
+
+        Anonymous functions are called with the VARIABLE NAME. 
+
+        Function Expressions can not be invoked before they are defined. 
+
+- Arrow Function Expressions - 
+    Syntax:
+        Arrow function expression syntax is the most common and modern syntax. You will see this more often. 
+        Consider the below function expression:
+            
+            ie
+            const add = function(numA, numB) {
+                return numA + numB;
+            }
+
+        Below is an example of the same function expression written as an arrow function:
+
+            ie const add = (numA, numB) => {
+                return numA + numB;
+            }
+
+        Arrow functions offer a more consise syntax than function expressions while using many of the same patterns. 
+
+        Here is the syntax breakdown
+            1. const keyword. This should be used when a function expression is assign to a variable.
+            2. name of the function =
+            3. Params inside (), comma separated.
+            4. =>. This replaces the function keyword.
+            5. Body of the function
+            5a. Statement of the function
+            5b. Return of the function. 
+    
+- Advanced Arrow Functions - // LEVEL UP // 
+    Implicit Return:
+        - Arrow functions composed of a single expression (something that resolves to single value) will automatically evaluate and return that expression without requiring us write the return keyboard. Just leave off the curly braces. 
+            ie: 
+            const multiply = (numA, numB) => numA * numB;
+
+            console.log(multiply(3,4)); // prints 12.
+
+    Single Params:
+        - When working with a single param, we can omit the ():
+            ie:
+            const addTwo = num => {
+                console.log(num + 2);
+            };
+
+            addTwo(2); // Logs 4
+
+    Combination:
+            ie:
+            const double = num => num * 2;
+    
+    Arrow Function Pitfalls:
+        Arrow functions have a unique of binding the THIS keyword, which makes them unsuitable for use as object methods or constructors. 

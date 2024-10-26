@@ -1,0 +1,161 @@
+== Into to CSS == 
+
+-- Concepts --
+    What is CSS?:
+        - CSS is a web technology that formats and styles HTML documents. It also provides stylistic behaviors using CSS animantions. CSS controls a web page's layout, colors, fonts, and other visual aspects. 
+
+        - CSS enables us to separate a documents structure and content (HTML), from its presentation (CSS). This concept of separation is widespread throughout software development. It helps make programs more maintainable and can provide better code reuse. 
+
+    Why us CSS?:
+        - There are many reason to use CSS, including:
+            * Styling pages: CSS is a how we apply style to web content. It allows brands to apply their signiture style to a page. When its at its best, it creates a more memorable expeirence. 
+
+            * Consitentcy: CSS can create consistent styles across multiple pages on a single site. This creates a professional and polished look and feel. 
+
+            * Accessability: CSS can make web pages more accessible by presenting information in better ways. It can also draw attention to essential elements. Use caution though; not being thoughtful when applying styles can just as easily render a site inaccessible.
+
+            * Animations, transitions, and more: CSS offers more advanced features, which can elevate a site's presentation when used sparingly. 
+
+-- Fundamentals --
+    Syntax: 
+        The following is the basic syntax of a CSS rule:
+            h1 {
+                color: orange;
+                text-align: center;
+            }
+        
+        - Selectors (h1): Used to target the elements(s) to be styled.
+
+        - Properties (color, text-align): A few hundred CSS properties can be used to style elements. For example, the color property shown above sets the color of the elements text. Elements are written in kabab-case. In this convention each word is written in lower case and separated by a dash. This differs from camelCase.
+
+        - Value: The value assinged to color property controls the color of an elements text. The valid values that can be applied to a property are specific to that property. Fir example, it can be given named values like orange, or specific colors using a special syntax. Meanwhile, the text-align property can only be given a few values, such as left, justify, center. A value like orange would be invalid. 
+
+        - Declaration: Combination of property and value, separated by a colon, and ending with the semi-colon. (text-align: center;)
+
+        - Rule: A selector and all of its associated declaration. 
+
+    Element Selectors:
+        - CSS element selectors target every instnace of a specific HTML element, such a <p>. Element selectors are the most basic type of selector. THey are defined in the HTML with the element name. 
+
+            <p> Hello World <p> // This is an HTML element.
+        
+        - To target that <p> element, and every other element on the page with the same <p> selector. 
+        
+            p {
+                color: purple;
+            }
+        
+    Comments:
+        - Like comments in the other languages, comments explain and document our CSS code. Browsers ignore these comments so they don't affect our web pages. 
+
+        - CSS comments start with a foward slash and an asterisk. The can span multiple lines or just one line.  
+            /**/ this is a comment in CSS. 
+
+-- BOX MODEL -- 
+    Everything is a box: 
+        - Every HTML element creates a box for its content. CSS can be used to modify that box through the box model. The box model is a way to visualize the space that each element takes up on the page. The box model is made up for parts: content, padding, border, and margin. 
+
+        - Although other CSS units can be used, we'll typically measure these boxes in pixels, abbreviated in code as px. 
+
+    Content: 
+        - The content of the box, where text and images appears. 
+
+    Padding: 
+        - Padding is the space between the content of an element and its border. 
+
+        - Padding can be added to any side of an element and it can be different thickness on different sides. Padding is useful for creating space between the content of an element and border or margin. 
+
+        - Adjusting the padding will shift the box's content but will not impact its neighboring elements. 
+
+        - When we use a single value, it gets applied to all four sides. 
+            p {
+                padding: 2px;
+            }
+
+        - You can also target a specific side of a box's padding like this:
+            p {
+                padding-bottom: 1px;
+                padding-left: 2px;
+                padding-right: 3px;
+                paddding-top: 4px;
+            }
+        
+        - You can also target different sides by using shorthand properties.
+
+    Border: 
+        - A border is the area (typeicall a line) surrounding the padding. Borders are useful for separating elements from each other and adding visual interest to a web page. 
+
+        - We can set the value of the borders width, style and color all in one line using the border shorthand property. 
+
+            p {
+                border: 3px solid red;
+            }
+
+        - We could also do three lines, ie:
+
+            p {
+                border-width: 3px;
+                border-style: solid;
+                border-color: red;
+            }
+    
+    Margin: 
+        - Margin is the space between the border and the other elements. 
+
+        - Margin can be added to any side of an element and they can be different thickness on different sides. Margins help create space between elements and control a web pages layout. 
+
+        - We can manipulate the value of the margin property the same way as the padding property. 
+
+            p {
+                margin: 2px;
+            }
+
+-- SHORTHAND PROPERTIES -- // Level Up //
+
+-- COMMON PROPERTIES -- 
+        - CSS properties are used to control the appearance and behavior of HTML elements. There are many CSS properties, but some of the most common are font properties, color, and background.
+
+    Font Properties:
+        - Font properties let us control the appearance of text on a web page. Some of the most common are:
+            * font-family: Specifies the font family of the text. When multiple fonts are specified, the first available font is used.
+
+            * font-size: Specifies the size of the text
+
+            * font-weight: Specifies the weight of the text(for ex, light normal, bold);
+
+            * font-style: Specifies the style of text(italic or normal)
+
+            * text-align: Specifies the alignment of the text(left, center, right, justified)
+
+        - Let's try styling our <h2> elements:
+            h2 {
+                font-family: Arial, sans-serif;
+                font-size: 28px;
+                font-weight: bold;
+                font-style: italic;
+                text-align: center;
+            }
+
+    color:
+        - We've already seen how the color property allows us to specify the color of fonts. 
+
+        - There are three ways to specify color values in CSS:
+            * hexdecimal values: #FF0000
+            * RGB values rbg(255, 0, 0);
+            * Color name: red;
+
+        - All three of the example values above will give us the same color.
+
+        - Any of the three methods is acceptable for declaring a color value, but there are advantages to using the RGB or hex codes, namely precision and range.
+
+        - Hex codes and RGB values give us variety and precision that color names can't. One of the reasons for this is that once you deviate from basic colors like red, green, blue color names can be subjective. There are only 140 predefined color keywords in CSS, but over 16,000,000 possible hex/RGB color combinations.
+
+-- SELECTORS -- 
+    What selectors do:
+        - We've already used element selectors like p and h2 to target specific HTML elements on a web page. This allowed us to style those elements in any way we wanted. IS and class selectors let narrow down the elements we want to select. For example, instead of selecting every <div> in our HTML, we can select only the div elements that have a specific id or class attributes. 
+
+    Class selector: 
+        - We use the class selector to grab one of the values within the class attribute. A single element can belong to multiple classes because the class attribute accepts multiple space-separated values! The same class can be used for multiple elements for example multiple elements have both the important and super-cool classes in our starter code. 
+
+
+

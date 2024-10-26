@@ -1,0 +1,201 @@
+INTRO TO JS OBECTS 
+
+- Concepts - 
+    What are Objects?:
+        - An object is a fundamental concept in JS. It's like a container that holds related DATA AND FUNCTIONS. They are the most common data structure in OOP (Object Oriented Programming).
+
+        - Very simply - OBJECTS are a collection of ZERO OR MORE PROPERTIES.
+
+        - A PROPERTY consists of a KEY: VALUE pairs. 
+            - Key: Acts as an identifier and must be a STRING or a SYMBOL. If any other type is used, it will be coerced into a string. 
+            - Value: A JavaScript expression that evaluates to a single value or thing. It encompasses simple data types like strings, numbers and booleans. A Value can also be an object or function.
+            When a function is bound to an object, it is called a method. 
+
+                ie:
+                {
+                    name: 'Ben Manley',
+                    birthday: 'January 1, 2000',
+                };
+
+        -In computer science, a K:V pairs are commonly referred to as DICTIONARIES.
+
+        - Objects are structured data types that hold related data (properties) and behaviors (methods) within a single collection.
+
+        - Properties are attributes associated with the object, and can store data of any type, including other objects.
+
+        - Methods are functions associated with an object that define its behevior can perform actions using the objects properties. 
+
+        - OOP is programming paradigm that focues on organizing code around the concept of objects, which represent real world entities or abstract concepts.
+
+    Why use Objects?:
+        - As a developer, you will use objects often. Below are SOME examples of what is modeled using objects:
+            Objects in the browser: 
+                - The browser window and everthing you see in it, like buttons, images, text are represented as objects in JS. This makes it easier to work with and manipulate those objects.
+
+            Styling and Elements:
+                - The appearance and behavior of webpage elements (like color, size, actions, etc) are controlled using objects. Each elements style and actions are properties of these objects.
+
+            Handling Data with Objects:
+                - When you submit data on a website, this data is handled as an object on the server. 
+        
+        - Boxing: Primitive data types like strings and numbers are turned into an object on demand by JS runtime when we want to call a method like toUpperCase. 
+
+        - Unlike arrays, the ORDER of properties in OBJECTS is NOT GUARANTEED. 
+
+- Fundamentals -
+    Object Literal Notation:
+        - Create an object using OBJECT LITERAL notation, also known as an OBJECT INITIALIZER.
+            
+            ie:
+            const music = {};
+            console.log(typeof music); // returns 'object'
+
+        - Object literal notation consists of a set of opening and closing curly braces, {}. In the above example, we used the {} to create an EMPTY music objects.
+
+        - Adjust the code so that music has a property.
+            
+            ie:
+            const music = {
+                currentTrack: 'Just Ken',
+                volume: 70,
+            };
+
+        - Properties are separated by commas (,).
+        - Trailing commas (comma after the last object) are encouraged. 
+    
+    Dot Notation:
+        - The primary way to access, add or modify an existing objects properties is DOT NOTATION. 
+
+        - Use dot notation to add another property to the music object:
+
+            ie:
+            music.currentPlaylist = ['Just Ken', 'Hey Blondie', 'What Was I Made For', 'Dance The Night'];
+
+        - We can then access the value using the same DOT NOTATION syntax:
+
+            ie:
+            console.log(music.currentPlaylist); // returns ['Just Ken', 'Hey Blondie', 'What Was I Made For', 'Dance The Night']
+            console.log(music.currentTrack);
+
+- Manipulation -
+    Changing an objects properties:
+        - To updates a property in a Javascript Object, you assign a new value to one of its keys.
+
+            ie: (refer to music object above)
+            music.volume = 60; // lowers the volume to 60.
+            console.log(music.volume); // returns 60.
+
+        - When using the assignment operator (=), if a property doesn't exist, it is created; otherwise, it's updated. In the example above, volume already exists as 
+        a property, so 'music.volume = 60' updates the value. 
+
+    Deleting an objects properties: 
+        - To completely removoe a property from an object, we use the DELETE operator:
+            
+            ie: (refer to the above music object)
+
+            delete music.currentPlaylist // deletes currentPlaylist property and all values. 
+
+- Getters and Setters - // LEVEL UP //
+    Intro to Getters and Setters:
+        - In JS, GETTERS and SETTERS are special functions that provide a way to get and set the values of an objects properties. They offer MORE control over how 
+        properties are accessed and modified. 
+        - SIMPLY PUT: GETTER and SETTER properties allow you to treat methods like regular properties that you can access without invoking and setting 
+        using the assignment operator.
+
+    Getters:
+        - A getter is used to access the value of an object's property.
+        - Its defined using the GET keyword. 
+        - A getter does not take any arguments and IS USED LIKE A PROPERTY, NOT A FUNCTION CALL. 
+        
+            ie:
+            const person = {
+                firstName: 'Ryan',
+                lastName: 'Deist',
+                get fullName() {
+                    return `${this.firstName} ${this.lastName}`;
+                };
+            };
+
+            console.log(person.fullName); // used like a property, not a function call. Returns 'Ryan Deist' 
+    
+    Setters:
+        - A setter is used to the set the value of an object's property.
+        - Its defined using the SET keyword.
+        - A setter takes a SINGLE ARGUMENT AND IS USED TO ASSIGN A VALUE.
+
+            ie:
+            const person = {
+                firstName: 'Ryan',
+                lastName: 'Deist',
+                set fullName(value) {
+                    [this.firstName, this.lastName] = value.split(' ');
+                };
+            }; 
+
+            person.fullName = 'Ryan Deist' // takes a single argument and is used to assign a value.       
+
+- Methods -
+    Basics of Methods: 
+        - In JS a METHOD is a function that is a property of an object. When a property hold a functions, we refer to to it as the METHOD of the OBJECT.
+        - Methods are used to define actions or behaviors for an object. They provide a way to interact with or get information about the object.
+        - They can be defined when intializing an object or assigned with DOT NOTATION if the object already exists.
+
+            ie: // example of defining when intiailizing an object. 
+            const music = {
+                currentTrack: 'Just Ken',
+                volume: 70,
+                mute() {    // adds the method mute to object, which sets music.volume to 0 if called. 
+                    music.volume = 0; 
+                }
+            };
+
+            ie: // example of defining with dot notation.
+
+            music.mute = function () {
+                music.volume = 0;
+            };
+        - Why not use an arrow function?
+            Arrow functions are great but work differently under the hood than regular functions when dealing with objects. 
+            Regular functions are designed to work smoothly with objects when you define methods that need to interact with the object itself. ??
+
+    Calling Object Methods:
+        - in JS, calling or invoking a method is similar to calling function EXCEPT a method is called on an object and only exists within the context of that object.
+
+            ie:
+            music.mute(); // works!
+
+            mute(); // reference error.
+
+        - You need to specify the object a method belongs to to call it, otherwise JS will not know where to find it. 
+
+    Adding a next() method to the music object:
+        - Enhance the music object by adding a next() method. This method will allow us to move to the next track in our currentPlaylist.
+        - With the current setup, we have no way to track our current track within the myPlaylist array.
+        - To improve this, we can create a new property containing the array index of the current song. 
+
+            ie:
+            const music = {
+                currentTrack: 'Just Ken',
+                trackIdx: 0, // stores the index of current track in relation to 'myPLaylist'.
+                volume: 70,
+                myPlaylist: ['Just Ken', 'Hey Blondie', 'What Was I Made For', 'Dance The Night'],
+                mute() {  
+                    music.volume = 0; 
+                }
+            };
+        
+        - With trackIdx, we can dynamically find the current track from current playlist by using square brackets [].
+
+            ie:
+            console.log(music.myPlaylist[music.trackIdx]); // returns 'Just Ken'
+
+        - Now we can build our next() method. 
+
+            ie:
+            music.next = function () { // created a method in music that adds one to trackIdx when called
+                music.trackIdx =+ 1;
+                music.currentTrack = music.myPlaylist[music.trackIdx]; // updates current track value to reflect the correct song playing based on trackIdx.
+            };
+
+- Data Structures-
+    

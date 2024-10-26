@@ -1,0 +1,259 @@
+== Rock, Paper, Scissors Exercise ==
+
+-- User Stories -- 
+    User Stories are effectively the requires for our project. Essentially what the user wants to do with this application
+
+    For our Rock, Paper, Scissors here are the user stories 
+        1. As a user, I want to see a landing page when I aarive at the website, so I know I'm in the right place.
+
+        2. As a user, I want to see clearly labeled buttons for Rock, Paper, and Scissors, on the landing page, so I instantly know my options for gameplay,
+
+        3. As a user, I want to be able to click on one of the Rock, Paper or Scissors buttons, making it easy to select my game move. 
+
+        4. As a user, I want visual feedback after making my selection, so I know my choice has been regisitered. 
+
+        5. As a user, I want to see the computer's choice displayed next to mine so I can compare the two. 
+
+        6. As a user, I want to be presented with a clear message indicating the winner of the game, so that I can immediately understand the outcome. 
+
+        7. As a user, I want the option to play another round, so I can try to improve my record. 
+
+    Each of these stories addresses a specific aspect of the user experience, making it easier to manager the development of these features as psuedocode. 
+
+-- PSEUDOCODE --
+    Learning to plan like a programmer:
+        - After crafting our user stories, we'll out line some pseudocode to guide the implementation of these features in out applications. To start, lets focus on the logic that powers a typical game of Rock, Paper, Scissors. 
+
+        - thinking programmatically might be challenging initially. It requires a different approach to problem-solving than you might be accustomed to.
+            * Take note of the types of information you need to keep track of while you play. 
+
+            * Consider how to adapt the traditional game for a browser environment. 
+
+            * Think about what and how choices are made during typical gameplay.
+
+            * Reflect on how the users choices or INPUT can be captured in a browser setting. 
+
+        If we consult our user stories, we know that players selection of hand should be made by clicking an icon. 
+
+    Pseudocode: 
+        Lets incorporate these thoughts into actional pseudocode.
+            // 1) Define any variables used to track the state of the game:
+            //    The players choice
+            //    The computers choice
+            //    The match result - win/lose/tie
+            //    A result message - display who won that round
+
+            // 2) Define the required constants:
+            //    There are only 3 choices a user can make ("rock", "paper", "scissors")
+            //    We'll need a reference to a DOM element to display messages
+
+            // 3) Handle a player clicking a button
+
+            // 4) Handle generating random selections for the computer player
+
+        Next, we'll need to consider the following user stories as we outline the main game logic:
+            - As a user, I want to see the computer's choice displayed next to mine, so I can compare the two. 
+
+            - As a user, I want to be presented with a clear message indicating the winner of the game, so I can understand the outcome. 
+
+                // 5) Compare the player choice to the computer choice, and check for a winner
+
+                // 6) Render a win/lose/tie message to the player 
+                //    Include both player and computer selections in the message
+                //    Clearly indicate who won
+
+        Once we have the pseudocode outlined, we can start considering the phyiscal structure of our application.
+
+-- SCAFFOLDING THE APPLICATION -- 
+    Creating our main page:
+        - We know from our user stories that we eed an attention grabbing landing page, with gameplay choices prominently displayed. 
+            * As a user, I want to see a landing page when I arrive at the website, so I know I'm in the right place. 
+
+            * As a user, I want to see clealy labeled buttons for Rock Paper and Scissors, on the landing page, so I instantly know my options for game play. 
+
+            * As a user, I want to be able to click on one of the Rock Paper or Scissors buttons, making it easier to select my game move. 
+
+        - Based on these stories, we are able to make an assumption about what our HTML structure should be:
+            1. Our game will need a landing page with a clear title so that users know they have reached the correct page.
+
+            2. We need Rock Paper and Scissors buttons displayed prominently so a user can quickly choose one. 
+
+            3. We should have a text element for communicating messages to the user - such as what the computer chose and who won the round. 
+
+-- CONSTANTS, VARIABLES, and CACHED ELEMENT REFERENCES -- 
+    Next, we will consider the following stories:
+        - As a user, I want to see the computers choice displayed next to mine, so I can compare the two
+
+        - As a user, I want to be presented with a clear message indicating the winner of the game, so that I can immediately understand the outcome. 
+
+    Constants:
+        - Initialize a globally available constant called choices. The choices constant will hold the three moves a player can make inside of an array. This constant, in constrast with our state variables, will NOT change. 
+            
+            const choices = ['rock', 'paper', 'scissors'];
+
+    Variables (game state):
+        - In our game, we;ll manager three key pieces of information that will be our game's STATE:
+
+        - State describes the status of an individual object or an entire program. When determining what needs to be held in STATE, ask yourself "What changes do we need to keep track of to know what is the current state of the program.
+
+            1. The players selection, represented by variable playersChoice.
+
+            2. The computers selections, represented by variable computersChoice
+
+            3. Outcome message, (winner/loser/tie) of the game, represented by variable message.
+
+        - For now, we simply initalize these variables. We will assign values later based on the games progression. 
+            let playersChoice;
+            let computersChoice;
+            let message;
+
+    Cached Reference Elements:
+        - In the CER section, define a cached element reference that will be used to display the game message. Simply put, we need to grab the element in the DOM that will be tasked with displaying our message and save it to a variable for ease of use later. In this case, well name is resultDisplayEl.
+
+        - The message variable we created above will store interchangeable message data, while resultDisplayEl represents the DOM element that will display that data. 
+
+            const resultDisplayEl = document.querySelector('#result-display');
+
+-- EVENT LISTENERS -- 
+    Our game will need event listeners, one for each of our button options. Our event listeners will listen for a click and call a function that starts the game. 
+
+    We'll call this function play. What is play? Don't worry, we'll stub that up in the next section! For now, just add these event listeners. 
+
+        document.querySelector('#rock').addEventListener('click', play);
+        document.querySelector('#paper').addEventListener('click', play);
+        document.querySelector('#scissors').addEventListener('click', play);
+
+    We could also refactor this code above to better adhere to the DRY principle
+
+        document.querySelectorAll('button').forEach(function (button) {
+            button.addEventListener('click', play);
+        });
+
+-- GAME LOGIC -- 
+    Now we will organize and contain our game logic.
+
+        - In a round of Rock Paper Scissors, a player can click one of the three button to select the "hand" or weapon they wish to play. Clicking one of these buttons will call the play function thanks to our event listeners. 
+
+        - Within our play function, we will eventually call upon any other functions that need to be executed to complete a round of the game. We'll buuld out the remaining functions next, but for now, let's stub up the play function and verify that our event listeners are working properly. 
+
+        const play = (event) => {
+            console.log(event.target);
+        };
+
+    getPlayersChoice: 
+        Goal: Set playersChoice to the id of the button the player clicked. 
+
+        - Start by creting a function to handle setting the game state. The getPlayersChoice function will be responsible for updating the playersChoice state variable. 
+
+         - Stube the getPlayersChoice function you see below, then refactor to call it with play. 
+
+        const getPlayersChoice = (event) => {
+            console.log('getPlayersChoice', event);
+        };
+
+        const play = (event) => {
+            getPlayersChoice(event);
+        };
+
+        - Note: Our getPlayersChoice() function relies on the event object to set playersChoice state. In the play function, we have pass the event down to getPlayersChoice so that it has access to the event as well. 
+
+        - Earlier we saw how event.target contains data related to the clicked element. For our purposes, the most important piece of information inside event.target is the elements id, a unique identifier for each button which corresponds to the id attribute assigned to the button in our HTML file. 
+
+        - By accessing the id of the button a player is clicked, we can update the playersChoice variable accordingly. When a player clicks on the the button with the id 'scissors,' our function should set player choice to the string 'scissor'. 
+
+        const getPlayersChoice = (event) => {
+            playersChoice = event.target.id;
+        };
+
+        const play = (event) => {
+            getPlayersChoice(event);
+            console.log(playersChoice);
+        }
+
+    getComputersChoice:
+    Goal: set computersChoice to random element from the choices array.
+
+        - Now that the playersChoice state is set, we also need a function that can capture and update computersChoice state. We can do this by generating a random number between 0 - 2 and using the resulting number as an index.
+
+        - We'll use square bracket notation to access our choices array at the random index. 
+
+        - Every time this function runs, it will select a new element from the choices array at random and assign it to our computersChoice state variable, like so. 
+
+            const getComputersChoice = () => {
+                const randomIndex = Math.floor(Math.random() * choices.length);
+                computersChoice = choices[randomIndex];
+            };
+
+    compare:
+    Goal: set message text based on a comparison of playersChoice vs computersChoice.
+
+        - Next, we'll build the main game logic - a function to compare the stored choices and determine the result. This function will also set message state based on that result. 
+            * If the player and computer have chosen the same "hand" or weapon, we'll set message to "You tied! Play Again?"
+
+            * Otherwise, we'll need to determine all of the possible outcomes in which the player would have a winning hand, if none of those scenarios are true, our else statement will assume the player lost. 
+
+                const compare = () => {
+                    if (playersChoice === computersChoice) {
+                        message = 'You tied! Play Again?';
+                    } else if (playersChoice === choices[0] && computersChoice === choices[2]) {
+                        message = 'You Win! Play Again?';
+                    } else if (playersChoice === choices[1] && computersChoice === choices[0]) {
+                        message = 'You Win! Play Again?';
+                    } else if (playersChoice === choices[2] && computersChoice === choices[1]) {
+                        message = 'You Win! Play Again?';
+                    } else {
+                        message = 'You Lose. Play Again?';
+                    }'
+                }'
+    
+-- render --
+    Goal: update the text of resultDisplayEl to reflect the changes in game state. 
+
+        - Now that the result of our compare function has updated message state, we need to show the player the result.
+
+        - It is best practice to do this with a render function, whose job it is to re-render elements of that DOM when the state changes. 
+
+        - In this case, our playersChoice, computersChoice, and message state have all changed since the page first loaded. We'll update the textContent of resultDisplayEl to reflect those changes. 
+
+            const render = () => {
+                resultDisplayEl.textContent = `You chose ${playersChoice} and the computer chose ${computersChoice}. ${message}`;
+            } ;
+
+-- play -- 
+    Goal: contain and organize our logic. 
+        - Finally, we have all of the functions necessary to make our game work. Let's make sure they are all being used, and called upon in the correct order in our play function. Reminder, play is the function called when the user initiates game play by clicking Paper, Rock or Scissors.
+
+            const play = (event) => {
+                getPlayersChoice(event);
+                getComputersChoice();
+                compare();
+                render();
+            };
+
+-- Play Again? --
+    Implementing a reset button:
+        Currently, there is no visual indication that the game can continue once a player has won or lost. Technically, you can just keep making sleections to play furute rounds, however, this isnt clearly communicated. Its also arguably not the most elegant user exeperience. Many games will feature a 'reset' option to revert the game back to its original state without having to reload the page. 
+
+        Lets implement this functionality.
+
+    Design the button: 
+        - In your HTML, add a button element below your game's display/message area.
+
+            <button id="reset-button">Reset Game</button>
+
+    Add reset functionality:
+        - Write a function in you JavaScript to reset the game's state 
+
+            const resetGame = () => {
+                playersChoice = null;
+                computersChoice = null;
+                message = '';
+            }
+    
+    Bind the function to the button:
+        - use an event listener to call your reset function when the Reset Game button is clicked.
+
+            document.querySelector('#reset-button').addEventListener('click', resetGame);
+
+
+

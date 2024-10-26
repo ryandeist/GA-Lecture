@@ -1,0 +1,244 @@
+== Intro to HTML ==
+
+-- History of HTML -- // LEVEL UP //
+
+-- Setup --
+    Setting up an HTML File
+        - To set an HTML file, touch a index.html file to the appropriate directory.
+
+        -In the HTML file, type ! and press tab to create HTML boilerplate. 
+
+    Why index.html? // LEVEL UP //
+        - Why do we name HTML files index?: 
+            Most websites and applications have a default HTML files called index.html
+
+            This is rooted in web server standards. When a user navigates to a directory, the web server searches for a default file to display.
+        
+        - Historical Context:
+            In the early stages of the web, directories would often list files openly. To create a more user friendly experience, web admins began using index as the welcome or landing page for each directly. 
+
+        - Server behavior:
+            When a URL directs to a directory rather than a specific file, the web server will automatically look for a default file in that directory to display. index.html is widely recognized as that default file.
+        
+        - Advantages:
+            1. User Experience: Simplifies user access by allowing them to just tpye the domainname or directory url without needing to remember a file name.
+            2. Simplicity: Makes server config easier, as most server software defaults use index.html as the initial access point. 
+
+-- Concepts --
+    What is HTML?:
+        - HTML is the standard markup language for documents designed to be displayied in a web browser.
+
+        - Hypertext is text displayed on a digital screen with reference to other text that can be navigated using hyperlinks. Markup provides both structure and semantic meaning to content. 
+
+        - Plainly, HTML is a language for writing structured documents that link to eachother
+
+        - Today, Web Browsers request HTML documents from a web server and renders them as web pages. 
+
+        - HTML is one of the three main technologies used in creating web content in browswers, with CSS and JavaScript
+
+    Why use HTML?:
+        - HTML is the structural backbone to apply style and behavior too. 
+
+        - Also, HTML contains metadata that can direct or improve how search engines return pages. 
+
+-- Comments and Elements -- 
+    Comments:
+        - You can add comments to HTML with the following syntax:
+            <!-- This is a comment in HTML -->
+
+        - A single comment can spand multiple lines. Anything inside the arrows will not be rendered. 
+
+        - In VS Code, you can auto comment with CMD + /
+
+    Element Syntax: 
+        - HTML Documents are made of elements. At their simplest, elements are a pair of tags with content between them. 
+            ie:
+            <h1>HTML Content!</h1>
+
+            1. The opening tag. An element name (h1) surrounded by <>
+            2. The content of the element. 
+            3. The closing tag. The same element name with an added / at the beginning, wrapped in <>.
+
+        - Most elements have a semantic meaning with default styling implemented by the browser. For example, the h1 tag used above indicates the main topic of the webpage and styles the text to be bold and larger than other tags. 
+        
+        - Void Elements: 
+            These are elements that won't ever have texxt content. Because the dont have text content, they dont have a closing tag. These be expressed a couple of ways. 
+
+            <hr> or <hr />
+
+-- Element Attributes -- 
+    Attributes: 
+        - Elements can have attributes that contain addition details about the element. 
+
+        - The attributes that are available for an element will vary, but some are consistent across every element. 
+            ie:
+            The 'id' attribute is used to uniquely identify an HTML element when nessessary. 
+            <h1 id="title">HTML Content!</h1>
+        
+        - Syntax to apply an attribute is typically as follows 
+            1. a space betweeen the element name and the attribute name
+            2. the attribute name 
+            3. an equal sign 
+            4. the attribute value wrapped in ""
+
+        - Other notable things about attributes. 
+            Working with Attributes will only ever alter the first tag or the only tag in the case of a void element.
+
+            Attribute names are always written in lower-kebab-case.
+
+            Multiple elements can be used in a single element. These are separated by spaces.
+
+    Elements and Attribute Indentation:
+        - At times, attribute values can be lengthy or many. To make your code easier to read, you should split the opening tag as in the example below. 
+            <div 
+                class="my-class"
+                id="my-id"
+                draggable="false"
+                hidden="false"
+            >
+                Content
+            </div>
+
+-- Nesting Elements --
+    Nesting Elements: 
+        - Elements can be place inside one another, like in our h1 example above. This is call nesting.
+
+        - We can continue nesting elements inside of one another.
+
+            <body>
+                <h1 id="title"> HTML Content! </h1>
+                <div>
+                    <h2> The big idea </h2>
+                    <p> HTML Lets us structure content! </p>
+                    <p> Elements can: </p>
+                    <ul>
+                        <li>Have attributes</li>
+                        <li>Be nested in other elements</li>
+                    </ul>
+                </div>
+            </body>
+
+        - In the above example, we have a div nested inside the body, and then and h2, two ps (representing a paragraph of text), and ul (an unordered list), nested inside of the div tag. Inside the ul, we have li (list items) nested inside the UL.
+
+        - it is important to indent elements to make HTML more readable. 
+    
+    Nested Relationships:
+        - When elements are nested, the form relationships with one another. 
+            1. Descendant/Ancestor: An element is a Descendant if it is nested anywhere inside the ancestor 
+            2. Child/Parent: An element is a child if it is a direct descendant of it's ancestor.
+            3. siblings: Two or more elements are siblings if the have the same parent. 
+
+-- Boilerplate -- 
+    HTML Boilerplate:
+        - HTML Boilerplate is the markup that exists in everywebpage. The starting point of all work on an HTML file. 
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+    
+            </body>
+            </html>
+
+        - First Line <!DOCTYPE html> tells a browser that this is an HTML file. 
+        
+        - Second Line <html lang="en"> is the ROOT element. This is the ancestor of every other element. lang="en" indicates that most of the content on this page will be in english.
+
+        - <head> all elements in this tag hold metadata about the document or other other resources for this docuement. 
+
+        - the first <meta> element informs the browser of the type of text that will appear on the page with charset
+
+        - the secont <meta> element will help mobile browsers display content appropriately with the name and content attributes 
+
+        - <title> element holds the text that will shown in the tab.
+
+        - anything appearing on the page itself goes in the <body> tag
+
+    Updating the Title:
+        We can update the title of our page by altering the content within the title attribute.
+
+-- Block vs. Inline --
+    Inline vs. block elements:
+        - Most elements are defined as either block or inline elements.
+            Block elements display on their own line and take up the full width available to them.
+
+            Inline elements are normally displayed without line breaksand occupy only enough space to contain their contents. 
+        
+        - Block Elements:
+            Examples of block elements include <div>, <h1> and <p>
+
+            The way we write code does have any impact on how these appear in browser. 
+                <div>This is a div!</div><h1>This is an h1!</h1>
+                <h2>This is an h2!</h2><p>This is a paragraph</p>
+
+            Because the are block elements, the will render on their own line, taking up the full width available to them in the browser. 
+
+        - Inline Elements.
+            Examples and inline elements include the <span>, <td>, <img>, <button> elements.
+
+            notice that the following line, <span> and <button> are coded adjacent to one anothers, like in the elements in the example above.
+                <span>I'm a span!</span><button>I'm a button!</button>
+
+            The will render differenly, sharing the same line. 
+
+        - Block elements will not share the line the occupy, inline elements will! 
+
+        - Block elements cant be styled to become inline elements and vice versa. 
+
+        - Inline Elements generally cannot have their h and w styled in CSS unless we use display: inline-block.
+
+        - Some inline elements , like <img>, are replaced inline elements and can be given a w and h in CSS without changing them to blocks. 
+
+-- Semantic HTML --
+    Semantic HTML  
+        - Semantic HTML helps express the meaning or purpose of the content on a webpage: 
+            * Visual Expression of Webpage with header, article, article, footer, nav *
+
+        - Semantic HTML clarifies the developers intentions about what they are trying to accomplish when structuring a page. It also improves accessibility for visually impaired
+
+        - It also allows for more accurate web searches with SEO. 
+
+        - Research HTML tags: 
+            1. <section>
+                The <section> HTML element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. Sections should always have a heading, with very few exceptions.
+            2. <article> 
+                The <article> HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.
+            3. <aside>
+                The <aside> HTML element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes.
+            4. <figure>
+                The <figure> HTML element represents self-contained content, potentially with an optional caption, which is specified using the <figcaption> element. The figure, its caption, and its contents are referenced as a single unit.
+            5. <main>
+                The <main> HTML element represents the dominant content of the <body> of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.
+            6. <footer> 
+                The <footer> HTML element represents a footer for its nearest ancestor sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents.
+            7. <header>
+                The <header> HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.
+            8. <nav>
+                The <nav> HTML element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.
+
+-- Structural Pitfalls --
+    Whitespace: 
+        - Multiple spaces created using the spacebar, return, and tab are rendered as a single space between elements and text. 
+
+        - When you want spae between text and elements, you should create it using CSS. As an additional option you can use the &nbsp (non breaking space) or the <br>
+
+    Malformed HTML:
+        - Proper structure and nesting of elements are important because the browser wont complain if the syntax is wrong. It will just do its best or fail, generally not showing the desired outcome. 
+
+-- Emmet -- // LEVEL UP //
+    What is Emmet and why use it?:
+        - Emmet is plug-in in VS Code that enhances HTML and CSS development by allowing you to write abbreviations that expand into complete code snippets. It employs a unique abbreviation syntax, influenced by CSS selectors, to produce code with minimal keystrokes. 
+
+        - Emmet can help generate boilerplate code quickly and efficiently.
+
+    How Emmet works: 
+        1. Abbreviation: Type an Emmet abbreviation. For example, ul>li* is an abbreviation to create and unorderlist element with five list item elements. The > indicates that the element that follows it will be a child. 
+        2. Expansion: Press the Tab key to expand the abbreviation into full code:
+
+    Additional Features
+        - Code Wrapping: You can slect code and use Emmet to wrap it with new elements
+        - Lorem Ipsum Generator: Use lorem to insert placeholder text.
+        - Attribute generation: You can include attributes within your Emmet abbreviation.

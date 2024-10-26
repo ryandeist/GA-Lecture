@@ -1,0 +1,47 @@
+body {
+    background-color: lightsalmon;
+    margin: 0px;
+    font-family: system-ui, sans-serif;
+  }
+
+  nav {
+    font-size: 18px;
+    background-color: white;
+    padding: 0 16px;
+  }
+ 
+  #destinations {
+    display: none;
+  }
+  
+  @media (min-width: 550px) {
+    #destinations {
+      display: flex;
+      gap: 16px;
+    }
+  
+    #destinations-mobile {
+      display: none;
+    }
+  }
+  
+/* Two Approached */
+/* Desktop Approach - default is ment to be o na bigger screen and string down */
+/* Mobile First - default is for a smaller screen and expands out */
+/* Basic Media Query example will include "@media (min-width or max-width: come pixel amy) {} */
+
+/* @media (min-width: 600px) {
+    body {
+        background-color: aqua;
+    }
+}
+
+ /* width range example using min-width and max-width */
+
+ /* @media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        background-color: violet;
+    }
+ }; */ 
+
+ /* stylesheet cascades, runs from top to bottom. Order matters when writing queries. */

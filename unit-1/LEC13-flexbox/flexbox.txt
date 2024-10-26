@@ -1,0 +1,8 @@
+What is Flexbox?: 
+    Tool used to created flexible box layouts. Used to create responsive layouts that look nice on any device. 
+
+    To implement flexbox, you need to update display property to = flexible. 
+
+    Once you have flexbox activated, you can use flexbox properties to control you content. 
+
+    The most common are justify-content, align items, flex-direction, and flex wrap.

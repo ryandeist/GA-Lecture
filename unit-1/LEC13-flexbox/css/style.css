@@ -1,0 +1,63 @@
+/* Basic CSS reset*/
+/* Removes instrinic styling to element */
+
+/*Fonts*/
+/* When choosing fonts you'll have three different fonts */
+/* Systems fonts - fonts that are already installed on the OS */
+/* Web Safe Fonts - fonts that are available on any computer */
+/* Imported Fonts - fonts from a library like google fonts etc */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: gray;
+    font-family: "Protest Guerrilla", sans-serif;
+    margin: 0;
+  }
+  
+  .flex-parent {
+    background-color: black;
+    display: flex;
+    /* after implementing flexbox */
+    height: 600px;
+    /* justify content - flex-start, flex-end, center, space between, space-evenly, and space around */
+    justify-content: space-around;
+    /* align-items, vertical adjustments  - center, flex-start, flex end*/
+    align-items: center;
+    /* flex-direction, row (align vertical, justify is horizonal, column (justify is vertical, align is horizotal, row-reverse, and column-reverse*/
+    flex-direction: row;
+
+  }
+  
+  .flex-child {
+    font-size: 48px;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #one {
+    background-color: #f0f0f0;
+    color: #707070;
+  }
+  
+  #two {
+    background-color: #d0d0d0;
+    color: #505050;
+  }
+  
+  #three {
+    background-color: #b0b0b0;
+    color: #303030;
+  }
+  
+  #four {
+    background-color: #909090;
+    color: #101010;
+  }

@@ -1,0 +1,345 @@
+Javascript Control Flow
+
+- Concepts -
+    What is control flow?:
+        Control flow in programming refers to the way we manage the order in which our
+        is executed within a program. Its like having a set of instructions and 
+        deciding when and how to follow them
+
+        Control flow is crucial when we want our program to  behave differently based on certain conditions or user input
+
+        Think of control flow like a traffic light an intersection just a traffic light regulates the 
+        movement of vehicles, pedestrians, etc, control flow regulates the sequence of actions and decisions that our program takes.
+
+    Basic Types of Control Flow
+        - Sequence: State execute one at a time, in succession. This is default
+            1 -> 2 -> 3
+        - Branching: Different code paths are executed based on a conditional expression.
+            ie: condition -> A 
+                    or    -> B  
+        Looping: Code in the loop repeats while condition is truthy.
+
+    Why is control flow important?
+        We dont always want our code to run from top to bottom. Changing or manipulating the flow can be 
+        useful to achieve many goals, such as:
+            - Decision Making: Sometimes we need the program to make different choices based on different conditions.
+            - Repetition: Many tasks involve performing the same action over and over.
+            - User Interaction: Applications respond to user actions. Control flow lets us manage those interactions with triggers.
+            - Error Handling: Handling errors with grace is important. Control flow lets us navigate errors by directing the program where to go if something goes wrong.
+
+- Boolean Logic -
+
+        In coding we need to compare values in or order to decide which action to take. To perform these comparisons 
+        in code, we use special symbols known as OPERATORS.
+                - An operator in programming is a symbol that tells the computer
+                to perform a specific mathematical, relational, or logical operation. 
+                The items compared are call OPERANDS. OPERANDS can be direct values or 
+                variables that represent values.
+
+    Equality Operators:
+        The tools we use to determine if two values are equal. Values can be direct values, variables and more.
+            === : strict equality (best practice)
+                Compares values of both Operands and returns true if they are equal in value and type.
+                ie: 
+                3 === 3 // true
+                4 === 3 // false
+                4 === '4' // false
+
+            == : Loose equality (performs type conversion)
+                Compares operands and will return true if the are equal in value, regardless of 
+                data type. Will perform type conversion which can introduce confusion and errors. 
+                ie:
+                    3 == '3' // will return TRUE. 
+
+    Loose Equality // LEVEL UP //
+        The loose equality operator ('double equals') will perform type conversion if 
+        needed when comparing operands.
+            ie:
+            3 == '3' // returns true
+        In the above example, JS will coerce the string '3' into the number 3, then will 
+        perform a strict equality check.
+
+        Typically it is best to avoid using loose equality, as we will rarely be in a situation
+        were our data type is irrelevant and type conversion wouldn't be a problem. 
+    
+    Relational operatiors: 
+        < - less than  ie: 3 < 4 // returns true
+        > - greater than ie 3 > 4 // returns false
+        <= - less than or equal to // 3 <= 3 true
+        >= - greater than or equal to 
+
+    Logical Operators: 
+        IN Javascript, we will encounter situations where you need to make decisions based on the 'truthiness' or 'falsiness' of values
+        This is where logical operators come in. 
+            - The logical OR (||) can evaluate multiple condidtions and if any of them evaluate to 'true' then the operator resolves to 'true'
+                ie: 
+                true || true // true
+                true || false // true
+                false || false // false
+            - The logical AND (&&) evalutes multiple conditions, but in order to evaluate true, all condidtions must evaluate to true. 
+                ie:
+                true && true // true
+                true && false // false
+                false && false // false 
+
+    The NOT operator:
+        The not (!) operator, also known as the 'bang' operator slips a true expression to a false expression and vice versa. 
+            ie:
+            !false // true
+            !true // false
+        When used in conjuction with the equality operators, the syntax looks like this. 
+            ie:
+            !== - strict inequality
+            3 !== 4 // true
+            3 !== 3 // false
+    
+    Truthy, Falsy, and Logical Operators // LEVEL UP //
+        The logical operater (||) OR evaluates expressions and returns the first truthy value.
+            ie:
+            'hello' || 'goodbye' // returns the truthy value, 'hello'
+            0 || null // both values are falsey. will return the last falsey operand
+        The power of the || operater is its ability to provide default values.
+            ie:
+            const username = getUsername() || 'Guest';
+        In the above example, if getUsernames returns a truthy value, it will be assigned to user name. However
+        if getUsername returns a falsy value, 'Guest' will be assigned. 
+
+        The logical AND (&&) operator evaluates expression and returns the first falsy operand it encounters. If all
+        operands are truthy, it returns the last truthy operand.
+
+        The && operator is iften used for conditional execcution.
+            ie:
+            userIsLoggedIn && performLogout();
+        In the above example, performLogout will only be called if userIsLoggedIn is truthy.
+        
+- Branching -
+
+    -- Branching is a type of controle that allows from different code pathes to be executes based on specific conditions. 
+
+    if - Single path:
+        - to execute a statement(s) conditionally, use an IF statement. Conditional expressions must be surrounded by a ().
+        - checks a conition (like asking a yes or no question). If the check results in a value of true, the code inside the IF block
+        will run. If false, it will be skipped. 
+    if...else - Dual paths: 
+        - checks a conition (like asking a yes or no question). If the check results in a value of true, the code inside the IF block
+        will run. If false, the code in the else block will run.
+    
+    if...else if...else - three or more paths:
+        - Checks if each condition is true and executes the the first one to evaluate to true. 
+        // const color = 'green';
+        //
+        // if (color === 'red') {
+            console.log('Stop');
+        } else if (color === 'yellow') {
+            console.log('Slow');
+        } else if (color === 'green') {
+            console.log('Go!);
+        }  else {
+            console.log('Whatever');
+        };
+    
+    Single-line if statements: // LEVEL UP //
+        - When you have a simple condition that requires only a single action, JS allows you to write if statements in a more 
+        concise way. This is known as a single-line if statement. 
+            ie: if (val === 1) console.log('This code will run if val === 1'); // no curly braces required!
+        - These are best used for simple operations to keep your code clean. Particularly useful in scenarios like setting a varriable,
+        logging a message, or executing a simple function. 
+        - only use when there is one statement to be executed. 
+        - might be harder to read in complex codebases. 
+    
+    Nested Branching Statements // LEVEL UP //
+        - Sometimes you will incounter a situation were one condition will depend on another. IN such cases, you can use 
+        NESTED IF STATEMENTS. These are if statements that are placed inside other if or else blocks, allowing for more complex decision making.
+        ie:
+            const dayOfTheWeek = 'Friday';
+            const isAfternoon = true;
+
+            if (dayOfTheWeek === 'Friday') {
+                if (isAfternoon) {
+                    console.log('Almost the weekend!');
+                } else { 
+                    console.log('Happy Friday Morning!');
+                }
+            } else {
+                console.log('It's not Friday.');
+            }
+
+    Ternary Operators // LEVEL UP //
+        - The ternary operator is useful when you need to carry out one of two actions depending on a condition. Take this 
+        if...else branch as an example:
+            const num = 100;
+
+            if (num > 5) {
+                console.log('num is larger than 5');
+            } else {
+                console.log('num is 5 or less');
+            }
+        - We can use a ternary to accomplish the same task.
+            num > 5 ? console.log('num is larger than 5') : console.log('num is 5 or less');
+        - note the syntax here:
+            - num > 5 is our condition
+            - the condition is followed by ?
+            - then an expression to execute if the condition is true or truthy
+            - the truthy expression is followed by a :
+            - then an expression to execute if the condition is false or falsey.
+        - a ternary operater gets even better when you to return one of values depending on one condition. 
+            ie:
+            let message = num > 5 ? 'num is larger than 5' : 'num is less than 5';
+
+            console.log(message);
+    
+    Switch Statements // LEVEL UP //
+        Look into using a SWITCH statement instead of if...else if you have more than three code paths, and for conditionals always check
+        the same variables. 
+        For example, consider the following if...else if...else statement:
+
+            const seasonCheck = 'winter';
+
+            if (seasonCheck === 'summer') {
+                console.log('It\'s Summer!');
+            } else if (seasonCheck === 'fall') {
+                console.log('It\'s Fall!');
+            } else if (seasonCheck === 'spring') {
+                console.log('It\'s Spring');
+            } else if (seasonCheck === 'winter') {
+                console.log('It\'s Winter');
+            } else {
+                console.log('Invalid Season');
+            };
+        
+        Can also be expressed as a SWITCH:
+
+            switch (seasonCheck) {
+                case 'summer':
+                    console.log('It\'s Summer!');
+                    break;
+                case 'fall':
+                case 'autumn':
+                    console.log('It\'s Fall!');
+                    break;
+                case 'spring':
+                    console.log('It\'s Spring');
+                    break;
+                case 'winter':
+                    console.log('It\'s Winter');
+                    break;
+                default:
+                    console.log('Invalid Season');
+            }
+        
+        The BREAK statement is used in a switch, to break out of execution early. If break is OMITTED, then execution moves 
+        to the next case regardless of if it matches the expression. In the above example, seasonCheck could equal 'autumn' or 'fall' and fall-through
+        would ensure that 'It's fall now!" would be logged for both values. 
+
+- Looping -
+
+    Looping is a control mechanism that repeats a set of actions. In coding these are typically code blocks and 
+    are repeated until a condition is no longer met (while condition is true) or specific number of times (for a certain number of
+    iterations)
+
+    FOR loop:
+        - A for loop repeats until a specific condition evaluates to false. For loops are commonly used to run a block a specific number of times. 
+            Syntax: 
+            for (initialization; condition; afterthought) {
+                statement;
+            };
+
+            - for: Starts a for Loop.
+            - initialization: an expression or variable declaration evaluated once before the loop beings. This is where you set up your loop counter. 
+            For instance, let i = 0; initializes a counter variable i to 0. They are local in scope to the loop.
+            - condition: An expression to be evaluated before each loop iteration. Think of this as the question the loop asks before each iteration.
+            If it evaluates to FALSE, the loop stops. For example, i < 10 continues as long as i is less than 10.
+            - afterthought: An expression to be evaluated at the end of every loop iteration. This part of the loop is for updating the loop counter and is evaluates AFTER the 
+            the code block is executed, but before the next iteration check. Commonly, this involves incrementing the counter, like i++
+            - code block/statement: The curly braces enclose the actions that you want to repeats in each loop. This is where you put the 
+            code that does something. 
+
+            Order of Operations for a FOR LOOP:
+
+            for (let i = 1; i < 10; i++) {
+                console.log(i);
+            }
+
+            Step 1: the initialization runs once before looping begins. It is used to declare and initialize a looping variable.
+            in this case i is initialized with a value of 1.
+            Step 2: the condition is evaluated. If true the code block will execute. In this case i = 1, so i < 10 is true.
+            Step 3: The statement executes, printing the currrent value of i to the console. 
+            Step 4: The update expression (afterthought) is executed. In this case, i is increased by 1. 
+            Step 5: Loop returns to Step 2. 
+            This repeats on the condition in Step to is no long met. 
+
+    WHILE loop // LEVEL UP //
+       The whike loop is a go-to when then umber of iterations is unknown. 
+       Unlike a FOR loop, a WHILE loop only specifies a condition. 
+            ie: 
+            while (/* condition */) {
+                // statement block
+            };
+
+            ie:
+            let number = 1;
+
+            while (number <= 10) {
+                console.log(number);
+                number++;
+            };
+        WHILE loops are notorious for allowing inifinite loops if the loop does not have 
+        an increment. 
+
+    DO...WHILE loops // LEVEL UP //
+        DO...WHILE loops are similar to WHILE loops except they force the block to execute at least once,
+        regardless if the condition is truthy or false. 
+            ie:
+            let num = 120;
+
+            do {
+                console.log(`${num} is even`);
+                num +=;
+            } while (num <= 10);
+        In the example above, the DO...WHILE loop will execute once, even though 120
+        is not < or = to 10. 
+
+    Naming descriptive loop counters. 
+        In programming is is commone to i as the loop counter, but this is not required. In some cases to improve readability, 
+        it could be better to use a more descriptive name for the variable. In the case above, 'number' might have been a better choice.
+
+- Truthy and Falsey
+    
+    What is falsey?
+        Most things in JS are truthy, so it is easier to remember what is falsey.
+        These to types are ALWAYS FALSEY:
+            - null: represents the intentional absence of value.
+            - undefined: indicates a variable that hasn't been assigned a value.
+        These four values are also falsey:
+            - false: the boolean value of false.
+            - 0: the number zero
+            - NaN: Not a number. Indicates that a value is not a valid number.
+            - '': an empty string. Strings are falsey when empty. A string with a space is not empty. 
+
+    What is truthy? 
+        Everything else is truthy. Meaning most objects, arrays, functions, non-zero numbers, non-empty strings are considered
+        true in Boolean text. 
+
+    Practical Use
+        The concept of truthiness and falsyness in JS is not just theoretical, but has practical applications in terms of making 
+        code more precise and readable.
+
+    Simplifying conditions 
+        Truthy and Falsey Values allow us to write conditions that directly check the value itself. Rather than writing a full comparison.
+
+    Be cautious. 
+        Misunderstanding the truthiness or falsyness of a value can lead to bugs if you're not aware of the potential values a variable can hold. 
+
+    Example in code: 
+        let string = "truthy value";
+            // Here, "if (string)" is checking if string is not an empty string, null, undefined, false, NaN, or 0.
+        if (string) {
+            // this block of code will run because string is a truthy value. 
+        }
+
+        Above is preferable to below. 
+
+        if (string !== "") {
+            // this is a more lengthy way of trying to make the same check without
+            // relying on the inherent nature of truthy/falsey values in JS
+        }

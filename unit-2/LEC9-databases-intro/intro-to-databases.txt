@@ -1,0 +1,8 @@
+#Intro-to-Databases
+
+##Concepts
+
+    ###What is a database?
+        An application uses a database to interact with, organize and save - or persist - data. There 
+
+##Non-Relational Databases 

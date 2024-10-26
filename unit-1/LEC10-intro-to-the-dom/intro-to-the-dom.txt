@@ -1,0 +1,253 @@
+== INTRO TO THE DOM ==
+
+-- Concepts -- 
+    What is the DOM?
+        - The DOM (Document Object Model) is a data representation of a web page loaded in the browser.
+
+        - The DOM is a tree like structure with the top (root) being the DOCUMENT object. It mirrors the tree-like structure of the HTML for a given document. Each element in the DOM is referred to as a NODE
+
+        - JavaScript uses the DOM to access an HTML document and its elements. The DOM has an APPLICATION PROGRAMMING INTERFACE or API that enables developers to make the UI dynamic by using JavaScript.
+            * An API is a set of predefined rules or methods that enables communication and data exchange between software components, applications or systems. 
+
+            * More specifically, the DOM API is a set of Methods and Properties provided by web browsers that aloow us to interact with and manipulate the strucutre, content and attributes of HTML using JavaScript. 
+    
+    Why do we use the DOM? 
+        - By itself, HTML is fairly static. Through the DOM we can do things like: 
+            * Read and Change content
+            * Change how elements are styled.
+            * Modify element attributes
+            * Create or Remove Elements
+            * Respond to Events.
+
+        - If we want to modify existing elements or display news using JavaScript, we rely on the DOM. We can also make web pages dynamic and respond to user actions by manipulating the DOM using JavaScript.
+
+-- Selecting an Element --
+    Selecting in the Browser:
+        - To explore the DOM in the browser press CMD + Shift + C
+        - You can click on the ELEMENTS tab to browse the HTML heirarchy of the DOM.
+        - Notice the == $0 at the end of </h1> tag. This tells us that the browers has created a variable name $0 that represents the <h1> element in the DOM.
+        - To explore the properties of the $0, open the console and type console.dir($0)
+    
+    Selecting with querySelector():
+        - We can select elements using code too. This is a fundamental skill. For this we use querySelector().
+
+        - querySelector() is a method on the DOCUMENT object. It lets us selecta single element on the webpage using CSS selectors. This is similar to how we select elements for styleing with CSS. 
+
+        - to USE querySelector(), provide a string that matches the CSS selector of the element you want to select. 
+            IE:
+            const titleElement = document.querySelector('#main-title');
+            console.dir(titleElement);
+
+        - The code above is doing a few things: 
+            * Selecting the Element: We use querySelector to find the element with the ID of main-title. This is the same way we would target that element in CSS. 
+            * Storing the element: We store the selected element in a variable named titleElement. This was we can use it in our code later. 
+
+            * Naming Conventions: Adding the Element or El to the end of a variable containing DOM elementts is good practice.
+            *Verification w/ console.dir(): Right after selecting the element, we use a console.dir to display its properties in the console. You should always do this to confirm which element you are selecing.
+
+    More than one match:
+        - If the CSS selector provided to querySelector has multiple matching elements it returns the first one. Avoid this by using a more specific selector. 
+
+        - If no matching DOM element is found, querySelector will return null. 
+
+    Caching Elements:
+        - when you store an element to a variable in JavaScript, it is referred to as a CACHED ELEMENT REFERENCE
+            * Creating a CACHED ELEMENT REFERENCE is a technique in which a DOM element is stored in a variable for future use, minimizing the need to query the DOM to access the same element repeatedly.
+
+        - creating CACHED ELEMENT REFERENCES is important because:
+            * we can write less code. 
+            * querying for elements in the DOM is prone to errors, and doing this prevents those. 
+            * improves performance.     
+
+-- The getElementById() Method -- // LEVEL UP //
+    The getElementById() is the most computationally efficient way to select a DOM element but requires that an element has an id assigned to it. 
+
+    Lets select the <h1> element with its id. 
+        const titleElementById = document.getElementById('main-title');
+        console.dir(titleElementById)
+
+-- Modifying an Element --
+    Modifying Text:
+        - The next step after learning to select and element is often to modify its text content. This is allows for dynamic updates to the page content. 
+
+        - to modify text, we use textContent. textContent is the property of and element. It provides a straightforward way to hand an elements text. It is efficient and avoids issues that can arise w/ other text-handling methods. 
+
+        - Try it 
+            ie:
+            paragraphEl.textContent = 'The placeholder text is gone!';
+
+        - In the above line, the text within paragraphElement changes to the defined string. 
+
+        - Its important to recognize that textContent is a property just like other properties in JS and is accessible through DOT formations
+            IE: We can console.log it. 
+            console.log(paragraphEl.textContent);
+            // prints the text content of paragraphEl
+
+        - We can perform logic on it. 
+            IE: the below function checks if the property is empty and logs a message if it isnt. 
+            if (paragraphEl.textContent !== '') {
+                console.log('The paragraph has text content!');
+            }
+    
+    Modifying Style:
+        - DOM elements also have a style property that can be used to set CSS styleing
+
+        - In web development, changing the style of elements dynamically is a common requirments. This is where there style property if DOM elements becomes useful. It allows you to set CSS style directly using JS. 
+
+        - Using the .style property:
+            * Every DOM element has a stlye property. This property is an object where you can set various CSS properties to style the element. 
+            IE: To center the <h1> element:
+            titleElement.style.textAlign = 'center';
+
+        CSS property naming conventions:
+            * In CSS: We use kebab-case for property names. IE: text-align:
+            * In JavaScript: In JS variable and property names cannot contain hyphens, so we use camelCase. IE: textAlign. 
+
+-- The innerHTML Property -- // LEVEL UP //
+    innerHTML, unlike textContent, can add HTML using JavaScript.
+
+    The innerHTML property is used to retrieve and set content as HTML in the format of a string. 
+
+    Lets try changing the content of <p> using text content vs innerHTML.
+        paragraphEl.textContent = 'Comments for <strong>today</strong>:'
+        // does not render the <strong> element. 
+
+        paragraphEl.innerHTML = 'Comments for <strong>today</strong>:'
+        // renders the HTML tag strong. 
+
+    If you want to add HTML to your document, use innerHTML.
+
+-- Creating an Element -- 
+    Adding elements to the page
+        - We;ve seen how to select and modify existing elements. We can also creat elements from scratch. Using JavaScript, we can create new elements on a webpage. This is done using createElement(). createElement() is a method on element. 
+
+        - We are going to add an <h2> element immediately after the <p> element in our webpage.
+
+        1. select the body element:
+            Use query selector to assign the body element to variable in JavaScript. Use console.dir to check you have the right element selected. 
+
+            const bodyEl = document.querySelector('body');
+
+            console.dir(bodyEl);
+
+        2. Create new Element
+            First we need to the creat the element with createElement() method on document.
+
+            const h2Elements = document.createElement('h2');
+
+            console.dir(h2Elements);
+
+            createElement() takes one argument, the element you want to create as a string. One this element is created, you can treat it like any other Cached Element Reference. 
+
+            h2Elements.textContent = 'Comments Section';
+
+            This adds text content to our created object, but doesn't make it appear on the page. First we need to add it to the DOM. 
+
+        3. Place element in the DOM. 
+            There are several methods to do this, but we are going to use the most common, appendChild(). This is why need to access the body element from earlier. 
+
+            bodyEl.appendChild(h2Elements);
+
+            This appends the new h2Elements element as a child of the <body> element. 
+
+            appendChild(method) works by adding the element we've passed as the LAST ELEMENT inside of the parnemt element we've appended it too. 
+
+    Adding elements through JS will appear after hardcoded elements in the HTML file because of the HTML runtime. 
+
+-- Working with a Collection of Elements --
+    Selecting Multiple elements:
+        - When developing websites, it's common to need to select and work with multiple elements on a page at once. This is where querySelectorAll comes in. 
+
+        - before diving in to how it works, lets the following HTML below the existing <p>
+            <ul id="comments">
+                <li>first comment</li>
+                <li>second comment</li>
+                <li>third comment</li>
+            </ul>
+
+        - Using querySelectorAll()
+            * This method is similar to querySelector, with a key difference.
+                1. querySelector selects the first element that matches the specified CSS selector. 
+                2. querySelectorAll selects ALL ELEMENTS that match the CSS selector. 
+
+    Iterating over a collection of elements:
+            When you use querySelectorAll in JavaScript it returns a collection of elements that resembles an array. This collection, known as a NodeList and loops through. 
+
+            - Because querySelectorAll always returns this data structure. its good preactive to use a variable that reflects a plural. 
+
+            - Once the CACHED ELEMENT REFERENCE has been created, we can use a for, for...of, or for...each loop to iterate.
+
+            - Lets add a forEach() loop to print each element. 
+                IE:
+                commentEl.forEach((commentElement) => {
+                    console.log(commentElement.textContent);
+                })
+
+-- NodeList -- // LEVEL UP //
+    Returning a collection DOM elements returns an array-like object called a NodeList
+
+    A NodeList will have a forEach method but doesnt contain any other useful methods like normal arrays.
+
+    There are two ways to hold DOM elements in an array. 
+
+    Array.from();
+        const itemEls = Array.from(commentEls);
+
+    Spread syntax 
+        const itemEls = [...commentEls];
+-- Placing Elements Precisely -- // LEVEL UP // 
+    In Creating an element, we learned how to place and element onto the page with appendChild(); This the is most commonly used method for placing elements on a page. Sometimes you need to place elements more precisely that that.
+
+    What would have helped most in this situation is adding a new element relative to its sibling element. For example, say we always want the <h2> element to always be immediately after the <p> element. 
+
+     In this case, we can use the <p> elements after() method. The element we pass into the after() method will be placed immediately AFTER the <p> element in the DOM. We already have a cached element reference for this. 
+
+     There are several methods to use to place elements precisely, including:
+        * after()
+        * before()
+        * replace()
+
+-- Element Attributes -- 
+    Accessing and modifying the attributes of an element
+        - Attributes ub HTML provide additional information about elements. Common examples are id and class. 
+
+        - Methods to work with attributes
+            * getAttribute(): retrieves the value of a specific attribute
+            * setAttribute(): sets or updates the value of a specified attribute
+            * hasAttribute(): Checks if an element has a certain attribute.
+            * removeAttribute(): Removes a specified attribute from an element.
+    
+    Practical Example: Enabling a Button
+        - Add a Button
+            <button disabled>Click me!</button>
+            disabled is a boolean attribute that doesnt have a value. If it is present on an element, then that element cannot be modified or intereacted with by a user. 
+
+            1. Use querySelector() to select the button element
+                const button = document.querySelector("button");
+
+            2. To make the button clickable, we have to remove the disabled attribute. 
+                if (button.hasAttribute('disabled') === true) {
+                    button.removeAttribute('disabled');
+                }
+
+    The class attribute
+        - When working with the class attribute, JavaScript provides a powerful and convenient property called classList.
+
+        - classList property is an object that offers specific methods to manipulate the classes of an element. These methods are designed to handle common tasks related to CSS classes. 
+
+        - Here are some methods for classList
+            * add(className, ...) Adds one or more class names to an element. 
+            * remove(className, ...) Removes one or more class names from an element. 
+            * toggle(className) Adds the class if it does not exists or removes it if it does. 
+            * contains(className) Checks if the element has the specified class.
+            * replace(oldClass, newClass) Replaces an existing class with a new class. 
+
+        - to add a class named 'btn' to our element:
+           buttonElement.classList.add('btn');
+ 
+
+    
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById

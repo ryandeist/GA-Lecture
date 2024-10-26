@@ -1,0 +1,29 @@
+div {
+    color: cornflowerblue
+}
+
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+button {
+    border-radius: 6px;
+    font-weight: 900;
+    background-color: aqua;
+    padding: 5px;
+}
+
+body {
+    margin: 0px;
+    background-color: lightgray;
+}
+
+ul {
+    margin: 0px;
+};
+
+

@@ -1,0 +1,414 @@
+#Intro to JS Classes
+
+    ##Concepts
+        In Javascript, classes act as blueprints for creating new objects. These new objects are called -instances- of that class. 
+
+        Imagine a class as a detailed template. It defines cercatin characteristics (properties) and actions (methods) that are common to a group of objects. For instance, a Car class might speficify properties like make, model, and color, and a method like drive(). When we create individual cars (instances) from this class, each car inherits these properties and methods, allowing us to assign specific values (ie: a red Honda Civic) and perform actions (ie: Drive the car).
+
+            - In the style of -Object Oriented Programming-, classes offer a clear and efficient way to create reusable parts of an application. 
+
+            - An -instance- is an object produced by a class, containing all of the properties and behaviors defined by that class. 
+
+        ###Encapsulation in OOP
+            Classes provide a clear and structured way to encapsulate and manage related data and functionality. -Encapsulation- is a key principle of OOP. It is the concept of bundling data (properties/attributes) and related behavior (methods) within **within an object.**
+
+            Lets build on this idea using the cars example. Conside the following three attributes: 
+
+                1. `make`
+                2. `model`
+                3. `color`
+
+            On their own, these attributes do not have much context. However, it makes sense to group (encapsulate) these attributes together to collectively describe characteristics of the same entity: a car.
+
+            Lets write out how those properties might be represented using object literal notation: 
+
+            ```javascript 
+            const myFirstCar = {
+                make: 'Toyota',
+                model: 'Corolla',
+                color: 'Black',
+            };
+            ```
+
+            ####What Other attributes might a car have?
+
+                What about the *behavior* of a car? what can a car do? What can you do with a car? Let's start with the basics - a car needs to start, right? A `start()` method will do nicely then. 
+
+                As you add behaviors you may also decide to create new attributes for a car - a `start()` method wont help us much unless we're also tracking if a car is currently running, so we should also create an `isRunning` attribute to suppor that behavior
+
+                Lets add those to the objective above: 
+
+                ```javascript
+                const myFirstCar = {
+                    make: 'Toyota',
+                    model: 'Corolla',
+                    color: 'Black',
+                    isRunning: false,
+                    start: function() {
+                        myFirstCar.isRunning = true;
+                        console.log('Running');
+                    },
+                };
+                ```
+
+        ###Why use classes?
+            In Javascript, objects can be created using object literal notation, so why are classes necessary?
+
+            Continuing from our example above - imagine we're building an application for a car dealership. We want to track their inventory of cars and make modifications over time. We can't possibly know the make, model, and color of every car that the car dealership will ever sell when we build the application. 
+
+            Without classes, we would have to add a new object literal in the applications code everytime the dealership buys a new car. A more efficient approach can be taken with classes. We can construct a `Car` class that defines the basic structure of a car. In this example, every instance of a car has a `make`, `model`, and `color`.
+
+    ##Defining and Instantiating a Class:
+
+        ###Defining a Class:
+
+            In Javascript, we define a class using the `class` keyword:
+
+            ```javascript
+            class Car {
+                // Code to define the classes properties and methods
+            };
+            ```
+
+            Take a look at the syntax used above. It might remind you of the syntax used for defining functions, abd rightly so, as classes in JavaScript are essentially special types of functions. However, there are some notable differences between the two, particularly in their naming conventions. Classes are typically written using -PascalCase- (capitalizing the first letter of each word), whereas functions are often written using camelCase.
+
+                >Although we haven't added any properties or methods to the class, we can still create and object (instance) from it, although it wouldn't be particularly useful.
+
+        ###Instantiating a class
+
+            The term *instantiating* refers to the process of creating a new object from a class. This newly created object is known as an *instance*. When we instantiate a class, the instance we create inherits all the properties and behaviors defined in that class. 
+
+            In JavaScript, instances are created using the `new` keyword, followed by the name of the class. 
+
+            Let's create a `myCar` object:
+
+            ```javascript 
+            const myCar = new Car();
+            ```
+
+                > Notice how instantiating a class resembles calling a function, using the `new` keyword, followed by the class name and parenthesis. 
+
+            If we try to vieww our new car object in the console, we'll see that it doesn't have any properties yet. 
+
+            ```javascript
+            console.log(myCar);
+            // Car {};
+            ```
+
+            ####The `constructor` method
+
+                When a class is instantiated, it's `constructor` method is called *automatically*. The `constructor` method is a special method defined within a class. 
+
+                In the `constructor` method, you can *define the initial values for the object properties*. These properties are attached to the object using the `this` keyword:
+
+                ```javascript
+                class Car {
+                    constructor(make, model) {
+                        this.make = make;
+                        this.model = model;
+                        //return is not needed
+                        //because the new object is returned by default
+                    };
+                };
+                ```
+
+                In this example, `make` and `model` are parameters passed to the `constructor` and are used to set the initial values of the `make` and `model` properties on each new `Car` instance. 
+
+                Now when we create a new instance, we can define its initial value by passing arguments through the `constructor`:
+
+                ```javascript
+                const myCar = new Car('Ford', 'Bronco');
+                console.log(myCar); // {make: 'Ford', model: 'Bronco'}
+                ```
+
+                Not every property of a class requires a parameter in the constructor. If a property should have the same default value for every instance, you can directly assign it with the constructor. 
+
+                For example, let's make sure the car isn't running when we build it:
+
+                ```javascript
+                class Car {
+                    constructor(make, model) {
+                        this.make = make;
+                        this.model = model;
+                        this.isRunning = false; // default is false
+                    };
+                };
+                ```
+
+                With this setup, ever `Car` instance we create will have `isRunning` set to `false` by default, without needing to pass this as a parameter to constructor every time.
+
+            ####What is `this`?
+
+                The work `this` in JavaScript might seem a bit confusing at first, but it's actually very useful once you understand its function. Think of `this` as a special word that helps you access things inside the object you're currently working with. 
+
+                Imagine you're inside a car. If you say, "Start -this- car," you mean the car you're in, right? Similarly, when you're inside a JavaScript object (like a class), `this` refers to -that- object. 
+
+                Key notes about `this`:
+                    - `this` is known as a -keyword- in JavaScript, available for use inside of functions or methods(like our `constructor` above).
+                    - The `this` keyword is a part of a functions -execution context- which includes the code and everything that aids in its execution. 
+                    - `this` changes depending on which object is using the method. 
+
+                All OOP languages use a keyword like `this` to:
+                    1. Access and object's own properties: Inside an object's method, `this` lets you access other properties or methods of the same object. It's like saying, "In -this- house, turn on -this- light."
+                    2. Resuse code: Sometimes, you want to write a method tht you can use in different object. `this` helps these methods work correctly no matter which object uses them, because `this` will always refer to the object that's currently using the method. 
+
+                Lastly, the value of `this` is automatically set by the JavaScript engine when a function is invoked. The act of setting that value is known as -binding- and although we can -change- the value of `this`, doing so is not common. 
+
+            ####Object Creation
+                When you create an object from a class in JavaScript using the new keyword, several steps happen in the background.
+                    1. JavaScript creates a shiny new empty object and assigns it to the `this` keywords.
+                    2. The class's `constructor` method is called automatically. The arguments you pass when creating a new object are fed into this `constructor`.
+                    3. Inside the `constructor`, properties are assigned to the new object using `this`. 
+                    4. The class automatically returns the shiny new object.
+
+                    >Although the `constructor` method appears unique because its called automatically, there's nothing special about how it's defined; other methods are defined the same way. 
+
+                Grasping `this` can be challenging at first, but with practice and examples, it becomes clearer. For now, what's most important to remember is *`this` in a class constructor is a reference to the new object being created.* It's a placeholder for the objects name, which isnt known until the class creates the object. 
+
+    ##Protoype Methods
+
+        ###Class methods:
+
+        Two types of methods can added to a class - *prototype methods* and *static methods*
+
+            1. *Protoype Methods* are available on an instance of the class (object) - this is why they are called `instance methods` in other OOP languages. `forEach` is an example of a prototype method on an array:
+
+                ```javascript
+                const nums = [1, 2, 3, 4, 5];
+                nums.forEach(num => console.log(num));
+                ```
+            2. *Static Methods* are called on the class itself and are not available on instances. These are typically used to implement behavior that doesn't pertain to a specific instance. 
+
+            Array.isArray is and example of a static method on `Array`
+
+                ```javascript
+                const nums [1, 2, 3, 4, 5];
+                console.log(Array.isArray(nums)); // true
+                ```
+
+        ###Defining prototype methods in a class
+            Let's add a prototype method called `start` to our `Car` class:
+
+                ```javascript
+                class Car {
+                    // constructor is always called
+                    constructor(make, model, color); {
+                        this.make = make;
+                        this.model = model;
+                        this.color = color;
+                        this.isRunning = false;
+                    };
+                    start() {
+                        this.isRunning = true;
+                        console.log('Running!');
+                    };
+                };
+                ```
+                > Class methods are not separated by a comma or any character. 
+
+            Notice the usage of the `this` keyword in our `start` method. It is being used outside of the constructor in this scenario. 
+
+            In our `start` method, the `this` keyword refers to the current object instance. When defining methods in a class, we don't know the names of the future instances. Because we dont know the name of the object being created ahead of time, we cannot specift its name within the `start` method. Even if we know the objects' name, it wouldn't be very useful because out `start` method would only work on that single object! `this` allows the method to function correctly in the context of a specific object instance. 
+
+            If we define our object directly, we can reference the object by its name within its methods. 
+
+                ```javascript
+                const myFirstCar = {
+                    make: 'Toyota',
+                    model: 'Corolla',
+                    color: 'black',
+                    isRunning: false,
+                    start: function () {
+                        // referencing the object by its name. 
+                        myFirstCar.isRunning = true;
+                        console.log('Running!');
+                    },
+                };
+                ```
+
+            In the example above, we use ` myFirstCar.isRunning` because we're certain of the objects name. However, in class based instances, the object's name isnt predetermined, so we use `this` to dynamically reference whichever instance is calling the method. 
+
+    ##Static Methods
+        ###Static Methods
+            Static Methods are typically used to implement behavior that does not pertain to particular instance. These a callable on the classs itself - not on the instances. For example, we could design the `Car` class so that it tracks every car it creates. We could then write static methods that return how many cars have been created, search them by their make, and more. 
+
+            Heres how to define a basic static method:
+
+                ```javascript
+                class Car {
+                    // the constructor will always be called
+                    constructor(make, model, color) {
+                        this.make = make;
+                        this.model = model;
+                        this.color = color;
+                        this.isRunning = false;
+                        this.isStopped = true;
+                    };
+                    start() {
+                        this.isRunning = true;
+                        this.isStopped = false;
+                        console.log('Runnin!');
+                    };
+                    stop() {
+                        this.isRunning = false;
+                        this.isStopped = true;
+                        console.log('Stopped')
+                    };
+                    static about() {
+                        console.log('I\'m the Car class!');
+                    };
+                };
+                ```
+                > Notice the use of the `static` keyboard that prefaces the methods name.
+
+            Next, lets call upon the static `about` method.
+
+                ```javascript
+                Car.about() // I'm the Car class!
+                ```
+
+            If we attempt to call `about` on the mySubaru instance, we should get and error:
+
+                ```javascript
+                mySubaru.about(); // Throws errors
+                ```
+    ##Inheritance
+        ###What is Inheritance?
+            In OOP, Inheritance is a concept where a new class (known as a child or -derived class-) aquires, or inherits, attributes and behaviors (properties and methods) from an existing class (known as a parent or base class). This allows the child to use and, if necessary, modify or extend the functionalities of the parent class. 
+
+            The newly derived class can be specialized by: 
+                - Adding additional properties
+                - Adding additional methods
+                - Overriding existing methods
+
+                > The newly derived class is called a -derived- or -subclass- while the original class is called a -base- or -superclass-
+
+            A subclass automatically inherits all of the superclass' properties and methods - whether you want them all or not. 
+
+            We're going to add a subclass called `ElectricCar` that will be derived from the `Car` superclass!
+
+        ###Using the `extends` keyword to create a subclass
+            We use the `extends` keyword to define a subclass.
+
+                ```javascript
+                class ElectricCar extends Car {
+                    constructor(make, model, color, batteryCharge) {
+                        super(make, model, color);
+                        this.batteryCharge = batteryCharge;
+                    };
+                };
+                ```
+
+            In a derived class, the `super` keyword represents the *parent superclass* and must be called before the `this` keyword can be used in the constructor. It can also be used to access properties of the superclass. 
+
+            Additional properties like `batteryCharge` above can be initialized in the constructor. Instances of `ElectricCar` will have a `batteryCharge` property, while instances of `Car' will not. Let's build an ElectricCar. 
+
+                ```javascript
+                const myVolvo = new ElectricCar('Volvo', 'EX30', 'Gray', 100); // Fully Charged!
+                ```
+
+            Determining which classes in a hierarchy to attach properties and methods to is difficult work, full of pitfalls and gotchas. This is one of the biggest hurdles to overcome when you're getting started with inheritance - it won't always be as clear cut as above. 
+
+        ###Overriding methods
+            A derived class can also overide methods defined on the parent superclass, Let's use this principle to modify the inherited `start` method for the `ElectricCar` class: 
+
+                ```javascript
+                class ElectricCar extends Car {
+                    constructor(make, model, color, batteryCharge) {
+                        super(make, model, color);
+                        this.batteryCharge = batteryCharge;
+                    };
+                    start() {
+                        if (this.batteryCharge > 0) {
+                            this.isRunning = true;
+                            console.log('Your electric car is running!');
+                        } else {
+                            this.isRunning = false;
+                            console.log('Time to recharge.');
+                        };
+                    };
+                }; 
+                ```
+            
+            Next, we'll start up the electric car, quickly deplete the battery, and try to restart it:
+
+                ```javascript
+                myVolvo.start() // "Your electric car is running"
+                myVolvo.batteryCharge = 0;
+                myVolvo.start() // "Time to recharge"
+                ```
+
+            ####Overriding prototype methods 
+
+            In JavaScript, inheritance is a bit different compared to traditional object-oriented programming languages like Java or Python. In JavaScript, inheritance is based on prototypes rather than class-based hierarchies, 
+
+            However, with the introducton of the class syntax in modern JavaScript, understanding prototypes isn't crucial for this lesson.
+
+            At the root of JavaScript's inheritance hierarchy is the `Object` class. Almost every object in JavaScript is an instance of `Object` and inherits methods from `Object.prototype`
+
+            For instance, the `toString` method is common method that ever object inherits. 
+
+                ```javascript
+                const mySubaru = new Car('Subaru', 'Crosstrek', 'blue');
+
+                console.log(mySubaru.toString()); // "[object Object]"
+                ```
+            
+            This default `toString` method isn't very descriptive, so often, you'll want to override it to make it more useful. 
+
+            For example, we can override `Object`'s implementation of `toString` by defining it in our Car class: 
+
+                ```javascript
+                class Car {
+                    // the constructor is always called
+                    constructor(make, model, color) {
+                        this.make = make;
+                        this.model = model;
+                        this.isRunning = false; // default is false
+                        this.isStopped = true;
+                        // return is not needed 
+                        // because the new obect is returned by default
+                        this.color = color;
+                    };
+                    start() {
+                        this.isRunning = true;
+                        this.isStopped = false;
+                        console.log('Running!');
+                    };
+                    stop() {
+                        this.isStopped = true;
+                        this.isRunning = false;
+                        console.log('Stopped!');
+                    };
+                    static about() {
+                        console.log('I\'m the Car class!');
+                    };
+                    // override a prototype method
+                    toString() {
+                        return `This car is a ${this.color} ${this.make} ${this.model}.`;
+                    };
+                };
+                ```
+
+            Now when we call the `toString()` method on `mySubaru` we should see the defined output"
+
+                ```javascript
+                const mySubaru = new Car('Subaru', 'Crosstrek', 'blue');
+
+                console.log(mySubaru.toString()); // "[object Object]"
+                ```
+
+            So far, you've learned how to define a class that creates objects with properties and add prototype methods. This represents about 80% of what there is to know about classes - congrats. 
+
+
+
+
+            
+
+    
+
+            
+
+
+
+

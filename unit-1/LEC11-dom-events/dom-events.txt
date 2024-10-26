@@ -1,0 +1,239 @@
+// INTRO TO DOM EVENTS // 
+
+-- Concepts --
+    What are DOM events?:
+        - Imagine DOM events as triggers on a web page. They are like signals that tell the web page when something has occured, allowing the web page to respond automatically. 
+
+        - In other words, DOM events are the building blocks to make web pages interactive. 
+
+    Why do we use DOM events?:
+        - Programmers use DOM events to create interactive web pages. Its like fgiving the web page the ability to listen and respond to what users do. When you click a button, type something, the web page can react. 
+
+        - This allows us to implement EVENT DRIVEN PROGRAMMING. In EVENT DRIVEN PROGRAMMING, the majority of the code reacts to events triggered by users. This is made possible by using JavaScript to MANIPULATE the DOM. 
+
+        - Examples of HTML Elements that users might be able to interacted with:
+            <input>: creates a text box to input data. 
+            <button>: can be pressed to intiate to add the content to a list or variable. 
+
+        What happens when the user clicks the button? For the app to function as expected, the clock would trigger a function that performs a series of tasks. 
+            1. Capture the text entered in the <input> element. 
+            2. Create a new list item element
+            3. Set the content of the new list item element to the text entered by the user. 
+            4. Place the new list item into the list. 
+            5. Finally, clear the the input so its ready for the next item. 
+
+    Types of Events:
+        - A user moves or clicks the mouse
+        - a user presses a key
+        - a form is submitted
+        - the page has finished loading or has been resized. 
+        - and more! 
+
+-- Fundamentals --
+    Listening to events:
+        - In JavaScript we use the addEventListener() method to attach EVENT LISTENERS to HTML elements in the DOM.
+            * An EVENT LISTENER is a function or piece of code in JavaScript that 'listens' for specific to occur on an HTML element, such as click, mouseover, keypress etc. When the specified event happens the event listener executes its associate code. 
+        
+        - Here is the common syntax:
+            element.addEventListener(type, callbackFunction)
+                1. the element we want to attach a listen to ex button.addEventListener()
+                2. Add the addEventListener() method. It takes two arguements. 
+                    2a. Type - string that indicates the event the listener will respond to.
+                    2b. The callback function. A function that will be executed the specified type happens to the element. 
+                
+            A callbackFunction above operates in a similar way to other callbackFunctions, exect the function is only executed in response to user interactions. 
+
+    The 'click' event:
+        We can build an event listener that will respond to one the most common types of events - 'click'
+
+        An element receives a click event when a mouses primary button is pressed and released on that item. Other pointing devices can trigger click, like finger tapping. 
+
+            const likeButtonElement = document.getElement("#like-button")
+
+            console.dir(likeButtonElement);
+        
+        Now, attach an event listener. The callback function should log "You Clicked Me!"
+            likeButtonElement.addEventListener('click', () => {
+                console.log('You Clicked Me!');
+            })
+
+-- Responding to Events -- 
+    App Overview: 
+        - We are going to build our this application so that users are ables to add comments to a list by typeing a comment and then clicking a button to submit. 
+                <h2>Comments</h2>
+                <ul>
+                    <li>Reading is what? Fundamental</li>
+                </ul>
+                <h3>Add a Comment</h3>
+                <input>
+                <button id="comment-button">Add Comment</button>  
+
+        - When we click the Add Comment button, a new coment should be creating using the text entered in the input. 
+
+        - In JavaScript, you can attach event listeners to various elements in the DOM. This includes not just the obvious interactive elements like buttons, but even headers!
+
+        - However, it is generally better to add event listeners to elements that inherently interactive. 
+    
+    Set up the button listener:
+         - first by assigning the button to a cached element reference:
+            const commentElementButton = document.querySelector('#comment-button');
+
+            console.dir(commentElementButton);
+
+        - Then add the event listener:
+
+            commentElementButton.addEventListener('click', () => {
+                console.log(' I Work');
+            })
+
+        - Check to see if it worked. 
+    
+    creating the <li> element:
+        - Start small, and work our way up. 
+
+        - Replace the console log checking in the button worked with code to create a new <li> element. 
+                        commentElementButton.addEventListener('click', () => {
+                            const commentElement = document.createElement('li');
+                        })
+
+        - With this, we create and <li> element by clicking the button. However we still need to tell it what goes inside and where to put it. 
+
+    Setting text on the commentElement:
+        - Lets can some text to the comment element. 
+
+        - Although our ultimate goal is sto set the text currently written in the ,input. element as text in the commentElement, we will start with some basic text. 
+            commentElement.textContent = 'Can you hear me?'
+            console.dir(commentElement);
+
+        - When you click the Add Comment button now, the console will log an <li> with the text content of "can you hear me?"
+
+        - We are now ready to add this to the DOM.
+
+    Placing <li> in the DOM:
+        - First, we select the <ul> element and adding the new <li> to it. 
+            const commentListElement = document.querySelector('ul');
+            console.dir('commentListElement') 
+
+        - Now we're ready to add the newly created element to the webpage by appending it to the commentListElement.
+            commentListElement.appendChild(commentElement);
+
+    Setting the text on the element commentElement to the value of inputElement.
+        - First, we must assign <input> to a cached reference element. 
+            const inputElement = document.querySelector('input');
+
+        - Then, we can attach code to our function to let the textContent of commentElement = input value using a special property to input called vale.
+
+-- Named Callbacks --
+    Named Callbacks:
+        - So far, when we've used callback functions, theyve typically been unnamed or ANONYMOUS. Take for example our code for the addEventListener on the like-button.
+            
+            likeButtonElement.addEventListener('click', () => {
+                console.log('You clicked me!');
+            });
+
+        - The code after 'click' is an ANONYMOUS function, but there is nothing stopping from passing a named function in its place. Below is the same function, assigned to handleLike function: 
+            
+            const handleLike = () => {
+                console.log("You clicked me!")
+            }
+
+        - Now we can add handleLike into our eventListener for like-button. 
+            likeButtonElement.addEventListener('click', handleLike);
+
+        - Notice we do not invoke () this function. This is because invoking would cause the function to immiately run. 
+
+    Like Functionality: 
+        - Lets add some like functionality. This code will the number a user has clicked the like button. It's a good start to managing some data in this application. 
+
+        - we're going to need to keep track of times the user has selected the like button
+
+            let likesCount = 0;
+
+        - When the user selects the like button, we need to increment the likeCount by 1. 
+
+            const handleLike = () => {
+                likesCount = likesCount + 1;
+                console.log(likesCount);
+            }
+
+        - Now lets display that data on the page. We can do this by adding the of likes to the button text itsself using the textContent property
+
+         const handleLike = () => {
+            likesCount = likesCount + 1;
+            likeButtonElement.textContent = `${likesCount} like(s). Like this post!`;
+        }
+
+-- The event object --
+    The dislike button: 
+        - Let's begin with a quick refactor. Currently the handleLike only handles likes. In this lession we will rewrite it that this single function handles both likes and dislikes. 
+            * Rename the handleLike function to handleReaction
+            * change the likeButtonElement event handler to to use this renamed function instead of the old handleLike function.
+            * Select the dislike button in the DOM and assign it to a cached element ref called dislikeButtonElement. 
+            * Add an events listener to the dislikebuttonElement it should call the handleReaction function when a 'click occurs'. 
+
+        - Note that now the addEventListener method on both the like and dislike buttons call the same even handler. (handleReaction). This is intentional and is often an effective way to reduce the ammount of code you've written. 
+
+    Like/Dislike Functionality:
+        - Now we are going to change up the handleReaction function so that it will work for both like and dislike. Do this, we must figure out which button the user clicked. We dont have an option to do this yet, but we can introduce one - the event object
+
+        - The event object is an argument that is passed by addEventListener to its callback function. JavaScript does this for us 'under the hood', so while we dont immediatly see it, it is available to us. The event object hold details about the event that just occured. To gain access to it, include it as a parameter in your event handler function. 
+
+            const handleReacion = () => {
+                console.dir(event);
+                likesCount = likesCount + 1;
+                likeButtonElement.textContent = `${likesCount} like(s). Like this post!`;
+            }
+
+        - In the event object, event.target represents the element the element in the DOM that was used to trigger the event.  we can confirm this with the below code. logging likeButtonElement and event.target will log the same thing on click. 
+
+             const handleReaction = () => {
+                console.log(event.target);
+                console.log(likeButtonElement);
+                likesCount = likesCount + 1;
+                likeButtonElement.textContent = `${likesCount} like(s). Like this post!`;
+            }
+
+        - Next, we need to determine which element was clicked, and from there we can write logic that can execute based on which one was clicked. 
+
+        - This is where out ids/classes and other attibutes can come in. If event.target tells us which object was clicked, then event.target.id will return the id of that element. We can confirm this with:
+
+            console.dir(event.target.id);
+
+        - If you click on like, like-button is returned to console. if you click dislike, dislike-button appears in console. From here, we can adjust our function to account for which button is clicked. 
+
+-- Event Bubbling -- // LEVEL UP //
+        - When an event occurs on an element, that event, whether it is listened to on that element or not, bubbles up through the DOM until it reached the document object. 
+            1. <button> event triggered on the innermost element
+            2. <div> Event bubbles up to parent
+            3. <body> Event continues bubbling up to outer elements. 
+
+        - All event listeners registered for the same event, such as 'click' will be invoking alonf the path to document element - unless one of those listeners calls the event objects stopPropagation method. 
+
+        - We'll observe bubbling from the perspective of the like and dislike buttons
+
+        - To help us observe event bubbling, we'll select the body and dic from the DOM and cache them respectively,  then attach a click listener to each element. 
+
+    Event Delegation:
+        - Imagine in a web app, like a game, with mant elements that respond to a click event, there could be 10s, 100s or more of the these elements. 
+
+        - That would be a lot of listeners and would take a lot of code to make work. Plus whenever a new element is added, an event listener must be registered. 
+
+        - Event bubbling allows us to implement what's known as EVENT DELEGATION. EVENT DELEGATION allows us to register a single event listener that can respond to events triggered by any of its descendants 
+
+        - Test this with divElement listener that you just created. Have it call the handleReaction function instead. 
+
+-- Removing Event Listeners -- // LEVEL UP // 
+        - It's possible to remove an event listener, however this is only possible if a named function was used in the callback: 
+            ie: 
+            btnElement.removeEventListener('click', handleClick)
+
+            * The above code would remove the 'click' event listener that was originally registers on the btnElement.
+
+        - We can see how this would work by adding the logic to remote our esablished event listeners in handleReaction. 
+        
+
+
+
+
+
+    
