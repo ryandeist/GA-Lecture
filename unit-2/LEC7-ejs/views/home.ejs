@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>We are rendering EJS!</h1>
-    <p> <%= msg %>, <%=player.name %> </p>
-    <ul>
-        <% inventory.forEach((item, index) => { %>
-            <a href="/<%= index %>">
-                <li><%= item.name %>: <%= item.qty %> </li>
-            </a>
-        <% }) %>
-    </ul>
+<%- include('./partials/html-head') %>
+<%- include('./partials/nav') %>
+  <h1>We are rendering a page!</h1>
+  <p><%= msg %></p>
+  <ul>
+    <% inventory.forEach((item, index)=>{ %>
+      <a href="/<%= index %>">
+        <li>
+          <%= item.name %>: <%= item.qty %>
+        </li>
+      </a>
+    <% }) %>
+  </ul>
 </body>
 </html>

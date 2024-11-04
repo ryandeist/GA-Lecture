@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= item.name %></title>
-</head>
-<body>
-    <h1>Welcome to the <%= item.name %> page.</h1>
-    <p> There are <%= item.qty %> left</p>
+<!-- views/show.ejs -->
 
-    <a href="/"><p>Return to Home</p></a>
-    
+<%- include('./partials/html-head') %>
+<%- include('./partials/nav') %>
+  <h1>Welcome to the <%= item.name %> page!</h1>
+  <p>There <%= item.qty === 1 ? "is" : "are" %> <%= item.qty %> left.</p>
 </body>
 </html>
