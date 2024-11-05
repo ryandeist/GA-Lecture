@@ -175,7 +175,7 @@ app.get('/about', (req, res) => {
 });
 ```
 
-* IN the provided example, the first route `/:name is dynamic, meaning ut uses a route parameter `:name` to match any URL path that starts with a / followed by any string. This pattern is quite broad and will match a wide range of URLs including something like `/about`
+* In the provided example, the first route `/:name` is dynamic, meaning ut uses a route parameter `:name` to match any URL path that starts with a / followed by any string. This pattern is quite broad and will match a wide range of URLs including something like `/about`
 
 * The issue arises because this general pattern also matches the specific URL `/about`. As a result, a request to `/about` gets intercepted by the first route `/:name` instead of reaching the intended `/about` route.
 

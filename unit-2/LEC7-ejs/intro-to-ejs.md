@@ -45,7 +45,7 @@ In Express Applications, there's a convention for organizing your ejs templates.
 
 3. Finally, inside of `home.ejs`, add some HTML boilerplate with ! + tab. 
 
-Change the <title> to `Home` Inside the body, add an <h1> with the text content `We are rendering an EJS page!` 
+Change the `<title>` to `Home` Inside the body, add an `<h1>` with the text content `We are rendering an EJS page!` 
             
 ```
 <!-- views/home.ejs -->
