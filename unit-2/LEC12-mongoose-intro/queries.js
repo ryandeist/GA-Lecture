@@ -38,7 +38,7 @@ const runQueries = async () => {
 connect()
 /*------------------------------ Query Functions -----------------------------*/
 
-// CREATE
+// Function to handle the CREATION of a new Todo. 
 const createTodo = async () => {
     const todoData = {
         text: "Learn CSS",
