@@ -23,12 +23,10 @@ router.post('/sign-up', async (req, res) => {
     }
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
-    // if they don't, create the user. 
-    // validation logic
+    // if they don't exist, create the user. 
 
     const user = await User.create(req.body);
     res.send(`Thanks for signing up ${user.username}`);
-
     // else, tell front end error occured. 
 });
 
