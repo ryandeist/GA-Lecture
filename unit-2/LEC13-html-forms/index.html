@@ -1,36 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>
-        MY CONTACT FORM
-    </h1>
-    <form action="/the-route-in-my-server" method="POST"> 
-
+    <h2>Sign In Form</h2>
+    <form action="/sign-in" method="POST">
         <div>
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" required>
+            <label for="user">Username:</label>
+            <div><small>required, at least 6 characters</small></div>
+            <input type="text" id="user" minlength="6" required />
         </div>
-
         <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
+            <label for="password">Password:</label>
+            <div><small>required, at least 6 characters</small></div>
+            <input type="password" id="password" minlength="6" required />
         </div>
-
-        <div>
-        <label for="message">Message</label>
-        <textarea name="message" id="message" cols="50" rows="10" required maxlength="100"></textarea>
-        </div>
-
-        <button type="submit">Send</button>
-
-        <!-- <input type="text" name="message" id="message"> -->
+        <button type="submit">Sign In</button>
     </form>
 
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, saepe perferendis odit labore, dolorem voluptate sint, maiores natus placeat nisi quidem ipsam quaerat fugit? Alias necessitatibus vero similique beatae facilis.
+    <h1>Contact Form</h1>
+    <form action="/the-form-submits-here" method="POST">
+        <fieldset aria-labelledby="contact-legend">
+            <legend id="contact-legend">Contact information</legend>
+            <div>
+                <label for="name">Name:</label>
+                <div><small>required</small></div>
+                <input type="text" id="name" required />
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <div><small>required</small></div>
+                <input type="email" id="email" required />
+            </div>
+        </fieldset>
+        <!-- Add the below fieldset and corresponding legend -->
+        <fieldset aria-labelledby="message-legend">
+            <legend id="message-legend">Message</legend>
+            <div>
+                <label for="category">I'm contacting about:</label>
+                <select id="category">
+                    <option value="work">A job opportunity</option>
+                    <option value="question">A question</option>
+                    <option value="misc">Miscellaneous</option>
+                </select>
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <div><small>required</small></div>
+                <textarea id="message" required maxLength="100"></textarea>
+            </div>
+            <!-- Don't forget the closing tag! -->
+        </fieldset>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Advanced input demo</h2>
+    <form>
+        <div>
+            <label for="checkbox-input">Checkbox input:</label>
+            <input type="checkbox" id="checkbox-input" />
+        </div>
+        <div>
+            <label for="number-input">Number input:</label>
+            <input type="number" id="number-input">
+        </div>
+        <div>
+            <label for="date-input">Date input:</label>
+            <input type="date" id="date-input" />
+        </div>
+        <div>
+            <label for="color-input">Color input:</label>
+            <input type="color" id="color-input" />
+        </div>
+        <div>
+            <label for="password-input">Password input:</label>
+            <input type="password" />
+        </div>
+        <div>
+            <label for="telephone-input">Telephone input:</label>
+            <input type="tel" id="telephone-input" />
+        </div>
+    </form>
+    <form>
+        <div>
+            <label for="pet-choice">Choose a pet:</label>
+            <input list="pets" id="pet-choice" name="pet-choice" />
+
+            <datalist id="pets">
+                <option value="dog"></option>
+                <option value="cat"></option>
+                <option value="fish"></option>
+                <option value="bird"></option>
+                <option value="reptile"></option>
+                <option value="rabbit"></option>
+            </datalist>
+        </div>
+    </form>
 </body>
 </html>
