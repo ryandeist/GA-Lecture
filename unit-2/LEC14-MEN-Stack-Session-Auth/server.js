@@ -7,6 +7,11 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
+const MongoStore = require("connect-mongo");
+const isSignedIn = require("./middleware/is-signed-in.js");
+const passUserToView = require("./middleware/pass-user-to-view.js");
+
+
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
@@ -36,14 +41,17 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI,
+        }),
     })
 );
 
+app.use(passUserToView);
+
 // GET /
 app.get("/", (req, res) => {
-    res.render("index.ejs", {
-        user: req.session.user,
-    });
+    res.render("index.ejs");
 });
 
 app.get("/vip-lounge", (req, res) => {

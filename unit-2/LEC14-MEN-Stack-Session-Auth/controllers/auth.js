@@ -26,7 +26,15 @@ router.post('/sign-up', async (req, res) => {
     // if they don't exist, create the user. 
 
     const user = await User.create(req.body);
-    res.send(`Thanks for signing up ${user.username}`);
+
+    req.session.user = {
+        username: user.username,
+    };
+
+    req.session.save(() => {
+        res.redirect("/");
+    });
+
     // else, tell front end error occured. 
 });
 
@@ -42,22 +50,26 @@ router.post("/sign-in", async (req, res) => {
     const validPassword = bcrypt.compareSync(
         req.body.password,
         userInDatabase.password
-      );
-      if (!validPassword) {
+    );
+    if (!validPassword) {
         return res.send("Login failed. Please try again.");
-      }
-      req.session.user = {
+    }
+    req.session.user = {
         username: userInDatabase.username,
         _id: userInDatabase._id
-      };
-      res.redirect("/");
+    };
+
+    req.session.save(() => {
+        res.redirect("/");
+    });
 });
 
 router.get("/sign-out", (req, res) => {
-    req.session.destroy();
-    res.redirect("/");
-  });
-  
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
+});
+
 
 module.exports = router;
 // You will only require a model in a controller. Should be the only place where we talk with the e
