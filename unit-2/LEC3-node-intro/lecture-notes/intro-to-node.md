@@ -19,47 +19,6 @@ Node can be used for a variety of applications like,:
 - Developing Web Servers to build restful APIs.
 
 
-## CJS vs ESM Modules:
-### CommonJS vs ECMAScript modules
-#### CommonJS 
-Designed to fill a void JavaScript. Long ago there wasn't a great way to modulize JS, but CJS allows us to define code for reuse. 
-    Syntax: `require()` to import and module.exporta to export
-    Compatibility: Native to Node and widely supported by most server side frameworks.
-    EX: 
-- To import: `const myModule = require('myModule');`
-- To export: 
-```javascript
-const myFunction = () => {
-    console.log('Send me anywhere, I'm ready!');
-};
-
-module.exports = myFunction;
-```
-
-#### ECMAScript modules (ESM)
-The modern, official standard for module management in JavaScript. Created to provide a standard, built0in module system that can be used across different platforms. 
-Syntax: uses `import` and `export` statements
-Compatibility: Natively supported in modern browsers.
-
-EX:
-- To import: `import myModule from 'myModule'`
-- To export: 
-```javascript
-const myFunction = () => {
-    console.log('Send me anywhere, I'm ready!');
-};
-
-export default myFunction;
-```
-### When to use CJS?
-- Node applications
-- Working on projects with legacy code
-
-### When to use ESM?
-- Web Development: ESM is the only option for websites and web apps.
-- Starting new projects in node: ESM is the latest standard.
-- Sharing code between the browser and server. ESM makes this possible because CJS cannot be used to make client side code. 
-
 ## More About Node:
 ### Enthusiasm for Node
 #### Developer Flexibility:
