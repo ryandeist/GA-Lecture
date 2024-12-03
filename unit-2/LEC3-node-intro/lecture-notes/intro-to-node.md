@@ -18,13 +18,6 @@ Node can be used for a variety of applications like,:
 - Building apps that interact with file systems.
 - Developing Web Servers to build restful APIs.
 
-## Executing JavaScript with Node:
-### Executing JavaScript in Node:
-- Doesn't have access to the DOM or Web APIs.
-- Has a file system built in. Browsers to not have those. (fs is used to access this system)
-
-#### How to run JavaScript code in Node:
-node *file name*
 
 ## Node's Built-In Modules:
 A -module- is a reusable block of code. Specifically in Node, a module refers to a specific JS file that can be easily used used in other JavaScript files to enable modular programming. 
