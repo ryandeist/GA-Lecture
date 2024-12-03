@@ -19,35 +19,6 @@ Node can be used for a variety of applications like,:
 - Developing Web Servers to build restful APIs.
 
 
-## Installing Node Packages:
-### Installing a package
-installing validator, which validates and sanitizes strings like:
-    isDate()
-    isEmail()
-    toBoolean()
-    normalizeEmail()
-To install a package, type the below in the terminal. 
-`npm i <package-name>`
-
-The installation process:
-- Package download
-- Where does this code live? It lives in the `node_modules` directory 
-- Using the package: To use the package you need to make it accessible in your js file with a require() statement. 
-
-### Exploring package.json
-Any packages we install will be added as a 'dependency' in our package.json file
-
-### Reinstalling dependencies
-Occaisionally, you will have to delete and reinstall your dependencies, whch can be done by deleting the 'node_modules' directory and typing 'npm i' in the terminal. 
-
-### Keeping `node_modules' out of git repos
-Because package.json stores all the relavant information about our modules, there is no need to keep the bulky and invasive `node_modules` file. 
-
-To prevent git from tracking the `node_modules` files, we would add them to a `.gitignore` file which tells Git which directories and files to ignore when pushing code.  
-
-### Uninstalling packages
-`npm uninstall <package name>`
-
 ## Requiring and Using Node Packages:
 Requiring and using validator:
 1. Read the docs on npmjs.com
