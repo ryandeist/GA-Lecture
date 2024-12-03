@@ -1,7 +1,5 @@
-# Intro to SPAs
-
-## Concepts
-### What is a "Single-Page-Application"? (SPAS)
+# Intro to SPAS - Concepts
+## What is a "Single-Page-Application"? (SPAS)
 In the past, all web applications were built as MPAs or "multi-page applications." MPAs send a brand new HTML page each time a user navigates around the app. For example, when a user clicks a link or submits a form, the server responds with a new HTML page for the browser to display to the user. The old HTML page is discarded. 
 
 ![example of traditional protocol](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/intro-to-spas/concepts/assets/twa.png)
@@ -14,7 +12,7 @@ This means that the user can navigate to different parts of the application with
 
 ![example of SPA protocol](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/intro-to-spas/concepts/assets/spa.png)
 
-### Why single-page applications?
+## Why single-page applications?
 
 ![trend graph of react vs angular](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/intro-to-spas/concepts/assets/react-angular-npm.png)
 
@@ -28,7 +26,7 @@ SPAs have become increasingly popular in recent years. This is reflected in the 
 
 * **Organizational Efficiencies**: SPAs enable specific teams in an organization to take ownership of smaller components of a larger application. This division of work allows for more efficient collaboration, as it requires less effort to integrate the work of multiple teams into a cohesive application. SPAs facilitate effective teamwork and remove some common pain points from app development. 
 
-### Real-world SPAs
+## Real-world SPAs
 
 SPAs are used in many popular websites and applications. Some examples of widely-used SPAs are:
 
