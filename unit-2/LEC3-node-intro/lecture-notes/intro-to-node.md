@@ -19,17 +19,6 @@ Node can be used for a variety of applications like,:
 - Developing Web Servers to build restful APIs.
 
 
-## Requiring and Using Node Packages:
-Requiring and using validator:
-1. Read the docs on npmjs.com
-2. Require validator
-    ex const <package> = require('<package>');
-    ex: const validator = require('validator');
-3. Test a method
-    In this case we will use the isEmail() method to test.
-    console.log(validator.isEmail('test@example.com')) //Expected true
-    console.log(validator.isEmail('not-an-email')) //Expected false 
-
 ## CJS vs ESM Modules:
 ### CommonJS vs ECMAScript modules
 #### CommonJS 
