@@ -19,23 +19,6 @@ Node can be used for a variety of applications like,:
 - Developing Web Servers to build restful APIs.
 
 
-
-
-
-
-## Setting up a Node Application:
-1. Ensure you are in the root of your Project
-2. Project initialization 
-    a. Custom initialization
-        npm init, followed by entering custom values for the set up fields. 
-    b. Quick initialization
-        npm init -y, this automatically fills out set up fields w/ defaults.
-
-### Understanding package.json
-The package.json file fills many roles, but has two primary purposes
-- Lists project metadata like name, version, and description
-- Lists dependencies, the external packages your project needs to function. 
-
 ## Installing Node Packages:
 ### Installing a package
 installing validator, which validates and sanitizes strings like:
