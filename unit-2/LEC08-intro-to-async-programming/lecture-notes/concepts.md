@@ -1,6 +1,5 @@
-# Intro to Async Programming
-## Concepts:
-### What is asynchronous programming?
+# Intro to Async Programming - Concepts:
+## What is asynchronous programming?
 By default, JavaScript operates synchronously; code is quickly executed line by line in the order it was written. This also means that each line of code must complete its execution before the execution of the following line can begin. If a particular task is time-consuming, it can cause a delay in the execution of subsequent lines of code. 
 
 [*Asynchronous programming*](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing) is a way to make your program perform tasks that might take a while without blocking other tasks.
@@ -10,7 +9,7 @@ Asynchronous programming allows a program to start a task that will be completed
 ![async diagram](https://pages.git.generalassemb.ly/modular-curriculum-all-courses/intro-to-asynchronous-programming/concepts/assets/sync-vs-async.png)
 > In programming, asynchronous refers to operations or events that don't occur in sequential order.
 
-### Why use asynchronous programming?
+## Why use asynchronous programming?
 Asynchronous programming is useful for tasks that involve waiting. This usually involves scenarios where an application needs to wait for an external process, like fetching data from a database or reading a file. 
 
 Unlike synchrosnous programming, where the entire application might freeze during such operations, asynchronous programming allows the rest of your application to remain active. This allows your program to update the UI or respond to user inputs while waiting for the data or file. 
@@ -24,16 +23,3 @@ This feature is commonly referred to as *infinite scroll*, and it's just one of 
 Many essential tools and operations in JavaScript are designed to work asynchronously - including operations like reading files or making database queries. Understanding how to work with asynchronous code will enable you to add these features to your apps. 
 
 > Understanding asynchronous programming is crucial in JavaScript, especially for operations like server requests, file reading, or any other task that takes time to complete. 
-
-
-
-
-
-
-
-
-
-
-
-
-
