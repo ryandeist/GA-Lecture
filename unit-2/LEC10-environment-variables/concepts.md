@@ -1,9 +1,8 @@
-# Environment Variables
-## Concepts
-### Application environments
+# Environment Variables - Concepts
+## Application environments
 As a full-stack developer, your apps often interact with external databases, servers, and authentication services. Your apps also need to be aware of their local operating environment. This environment includes all the external systems and services your application communicates with and how they influence its functionality and behavior. 
 
-#### Multiple Environments
+### Multiple Environments
 The environment an application runs in will likely vary depending on the context in which it operates. Suppose we have an application that requires a database to store information.
 
 The best practice would be to have *two* environments:
