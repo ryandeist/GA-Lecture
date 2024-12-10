@@ -1,12 +1,14 @@
 import './Navbar.css';
+import NavbarLink from '../NavbarLink/NavbarLink';
 
-const Navbar = () => {
+const Navbar = ({ links }) => {
     return (
         <nav id="top-navbar">
-        <a href="/">Home</a>
-        <a href="/about-us">About Us</a>
-        <a href="/money-pit">Investment Opportunities</a>
-        <a href="/the-fine-print">Terms of Service</a>
+          {links.map((link, index) => (
+            <NavbarLink key={index}
+            {...link}
+            />
+          ))}
       </nav>
     )
 }

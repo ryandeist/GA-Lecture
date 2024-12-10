@@ -2,6 +2,13 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import FounderListItem from './components/FounderListItem/FounderListItem';
 
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/about-us", text: "About Us" },
+  { href: "/money-pit", text: "Investment Opportunities" },
+  { href: "/the-fine-print", text: "Terms of Service" },
+];
+
 const founders = [
   {
     name: "Elizabeth Holmes",
@@ -26,7 +33,7 @@ const founders = [
 const App = () => {
   return (
     <>
-      <Navbar />
+      <Navbar links={navLinks} />
       <main>
         <h1>Welcome to Hyperbo.ly</h1>
         <h2>The future is firmly in front of us!</h2>
