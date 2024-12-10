@@ -37,7 +37,7 @@ const App = () => {
       {founders.map((founder) => (
           <FounderListItem
             key={founder.id}
-            founder={founder}
+            {...founder}
           />
         ))}
       </ul>
