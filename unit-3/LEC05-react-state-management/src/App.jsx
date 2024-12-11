@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState } from 'react'
+import { useState } from 'react' // unpacking useState()
 import './App.css';
 
 const App = () => {
