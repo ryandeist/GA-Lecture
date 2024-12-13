@@ -12,10 +12,16 @@ const App = () => {
     setFormData({...formData, [event.target.name]: event.target.value});
   };
 
+  const handleSubmit = (event) => { 
+    event.preventDefault(); // prevent default submit button behavior
+    setTitle(`Your name is: ${formData.firstName} ${formData.lastName}.`); // set our title state based on the formData state at the time of submission
+    setFormData({ firstName: '', lastName: ''}); // Reset fullName state to clear form inputs
+  };
+
   return (
     <>
       <h2>{title}</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name: </label>
         <input
           name="firstName"
@@ -30,6 +36,7 @@ const App = () => {
           value={formData.lastName}
           onChange={handleFormChange}
         />
+        <button type='submit'>Submit your name</button>
       </form>
     </>
 
