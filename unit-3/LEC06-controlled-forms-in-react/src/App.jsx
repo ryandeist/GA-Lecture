@@ -2,22 +2,14 @@ import { useState } from 'react'
 import './App.css'
 
 const App = () => {
-
-  // const [cityInput, setCityInput] = useState('');
   const [title, setTitle] = useState('The full name will appear here');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  
-  // const handleChange = (event) => {
-  //   setCityInput(event.target.value);
-  // };
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+  });
 
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+  const handleFormChange = (event) => {
+    setFormData({...formData, [event.target.name]: event.target.value});
   };
 
   return (
@@ -28,18 +20,62 @@ const App = () => {
         <input
           name="firstName"
           id="firstName"
-          value={firstName}
-          onChange={handleFirstNameChange}
+          value={formData.firstName}
+          onChange={handleFormChange}
         />
         <label htmlFor="lastName">Last Name: </label>
         <input
           name="lastName"
           id="lastName"
-          value={lastName}
-          onChange={handleLastNameChange}
+          value={formData.lastName}
+          onChange={handleFormChange}
         />
       </form>
     </>
+
+    // MANAGING CONTROLLED FORMS LESSION: 
+    // const [title, setTitle] = useState('The full name will appear here');
+    // const [firstName, setFirstName] = useState('');
+    // const [lastName, setLastName] = useState('');
+
+    // const handleLastNameChange = (event) => {
+    //   setLastName(event.target.value);
+    // };
+
+    // const handleFirstNameChange = (event) => {
+    //   setFirstName(event.target.value);
+    // };
+
+    // return (
+    //   <>
+    //     <h2>{title}</h2>
+    //     <form>
+    //       <label htmlFor="firstName">First Name: </label>
+    //       <input
+    //         name="firstName"
+    //         id="firstName"
+    //         value={firstName}
+    //         onChange={handleFirstNameChange}
+    //       />
+    //       <label htmlFor="lastName">Last Name: </label>
+    //       <input
+    //         name="lastName"
+    //         id="lastName"
+    //         value={lastName}
+    //         onChange={handleLastNameChange}
+    //       />
+    //     </form>
+    //   </>
+
+    // CONTROLLED INPUTS LESSION
+
+    // const [cityInput, setCityInput] = useState('');
+
+    // const handleChange = (event) => {
+    //   setCityInput(event.target.value);
+    // };
+
+    // return (
     // <>
     //   <label htmlFor='cityInput'>City: </label>
     //   <input 
