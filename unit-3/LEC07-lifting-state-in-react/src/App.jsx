@@ -1,10 +1,18 @@
 import { useState } from 'react'
+import IncrementButton from './components/IncrementButton/IncrementButton';
 import './App.css'
 
 const App = () => {
+  const [count, setCount] = useState(0);
+  const addOne = () => {
+    setCount(count + 1);
+  };
 
   return (
-    <h1>Hello world!</h1>
+    <>
+      <p>Count: {count}</p>
+      <IncrementButton addOne={addOne} />
+    </>
   );
 };
 
