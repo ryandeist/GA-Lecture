@@ -1,0 +1,10 @@
+/* src/components/example-1-normal-css/Button.css */
+.btn {
+    background-color: #2465f1;
+    border-radius: 8px;
+    color: white;
+    font-size: 24pt;
+    padding: 15px 50px;
+    width: 300px;
+  }
+  

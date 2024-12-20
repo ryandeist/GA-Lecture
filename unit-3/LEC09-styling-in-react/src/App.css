@@ -1,0 +1,20 @@
+/* src/App.css */
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+* {
+  /* add custom fonts here */
+  font-family: 'Roboto Flex', sans-serif;
+}
+
+:root {
+  background-color: #242424;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 100px auto;
+  width: 300px;
+}
