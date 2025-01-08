@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 const PokemonDetails = (props) => {
     // console.log(props);
     const { pokemonId } = useParams();
-    console.log('pokemonId:', pokemonId);
+    // console.log('pokemonId:', pokemonId);
 
     const singlePokemon = props.pokemon.find((poke) => (
         poke._id === Number(pokemonId)
     ));
-    console.log('Pokemon Obj:', singlePokemon);
+    // console.log('Pokemon Obj:', singlePokemon);
 
     return (
         <>
