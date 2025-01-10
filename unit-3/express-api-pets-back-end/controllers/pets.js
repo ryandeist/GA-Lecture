@@ -74,7 +74,6 @@ router.put('/:petId', async (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         };
     };
-    // res.json({ message: `PUT /pets/${req.params.petId}` });
 });
 
 module.exports = router;
