@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const petSchema = mongoose.Schema({ 
     name: { type: String, required: true },
     age: { type: Number, min: 0, required: true },
-    breed: string
+    breed: String
 });
 
 const Pet = mongoose.model('Pet', petSchema);
