@@ -1,5 +1,11 @@
 const PetDetail = (props) => {
-    
+
+    if (!props.selectedPet) {
+        return (
+            <h2>No Pet Selected</h2>
+        )
+    };
+
     return (
         <div>
             <h1>{props.selectedPet?.name}</h1>
