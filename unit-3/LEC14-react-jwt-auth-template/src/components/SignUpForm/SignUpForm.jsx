@@ -54,6 +54,17 @@ const SignUpForm = () => {
                     />
                 </div>
                 <div>
+                    <label htmlFor='confirm'>Confirm Password:</label>
+                    <input
+                        type='password'
+                        id='confirm'
+                        value={passwordConf}
+                        name='passwordConf'
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
                     <button disabled={isFormInvalid()}>Sign Up</button>
                     <button onClick={() => navigate('/')}>Cancel</button>
                 </div>

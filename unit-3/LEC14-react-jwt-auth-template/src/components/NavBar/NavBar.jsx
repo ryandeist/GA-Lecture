@@ -1,7 +1,11 @@
+import { Link } from 'react-router';
+
 const NavBar = () => {
     return (
         <nav>
-            <p>NavBar contents go here</p>
+            <ul>
+                <li><Link to='/sign-up'>Sign Up</Link></li>
+            </ul>
         </nav>
     );
 };
