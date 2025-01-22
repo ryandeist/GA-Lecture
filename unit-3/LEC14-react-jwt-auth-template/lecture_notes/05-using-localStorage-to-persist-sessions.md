@@ -67,7 +67,7 @@ If the token does not exist, we return `null`. If the token does exist, we use t
 JSON.parse(atob(data.token.split('.')[1])).payload;
 ```
 
-THis allows us to get the user data we attached to the `payload` object on the back-end when it created the token. React will use data as the initial state for our user. 
+This allows us to get the user data we attached to the `payload` object on the back-end when it created the token. React will use data as the initial state for our user. 
 
     > In a more complex app with more extensive interactions with tokens, we would want to house all the code that works with tokens in a single file to be better organized and reused more easily. 
 
