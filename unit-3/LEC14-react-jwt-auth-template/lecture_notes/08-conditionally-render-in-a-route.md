@@ -87,3 +87,57 @@ const App = () => {
   // Return statement code here
 };
 ```
+
+With all the pieces in place, we can finally build the route! We'll use a ternary with the `user` context to conditionally render the `Dashboard` or `Landing` component within the `element` property of a `Route` component. This will allow us to render the appropriate component based on the user's authentication status. 
+
+```jsx
+// src/App.jsx
+
+const App = () => {
+  const { user } = useContext(UserContext);
+
+  return (
+    <>
+      <NavBar />
+      <Routes>
+        {/* Add the new `/` route! */}
+        <Route path='/' element={user ? <Dashboard /> : <Landing /> } />
+        <Route path='/sign-up' element={<SignUpForm />} />
+        <Route path='/sign-in' element={<SignInForm />} />
+      </Routes>
+    </>
+  );
+};
+```
+
+## Link to the new route
+Finally, let's make sure our users can get here easily by adding a couple new links to the `NavBar` component.
+
+```jsx
+// src/components/NavBar/NavBar.jsx
+
+  return (
+    <nav>
+      {user ? (
+        <ul>
+          <li>Welcome, {user.username}</li>
+          {/* The new link */}
+          <li><Link to='/'>Dashboard</Link></li>
+          <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
+        </ul>
+      ) : (
+        <ul>
+          {/* Another new link */}
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/sign-in'>Sign In</Link></li>
+          <li><Link to='/sign-up'>Sign Up</Link></li>
+        </ul>
+      )}
+    </nav>
+  );
+```
+
+Remember you can get to this route regardless of whether they're signed in or not.
+
+### Test
+Open your browser and navigate to `http://localhost:3000`. If you’re signed in, you should see the `Dashboard` component. If you’re signed out, you should see the `Landing` component.
