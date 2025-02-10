@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as weatherService from './services/weatherService';
 import WeatherSearch from './components/WeatherSearch/WeatherSearch';
 import WeatherDetails from './components/WeatherDetails/WeatherDetails';
@@ -17,6 +17,19 @@ const App = () => {
     };
     setWeather(newWeatherState);
   };
+
+  useEffect(() => {
+    const fetchDefaultData = async () => {
+      const data = await weatherService.show('Baltimore');
+      const newWeatherState = {
+        location: data.location.name,
+        temperature: data.current.temp_f,
+        condition: data.current.condition.text,
+      };
+      setWeather(newWeatherState);
+    };
+    fetchDefaultData();
+  }, []);
 
   // console.log(weather);
   return (
