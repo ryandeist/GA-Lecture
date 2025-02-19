@@ -1,4 +1,39 @@
-# Writing a Python Class
+import random
+
+class BankAccount():
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+        self.account_no = random.randint(111111111, 999999999)
+        
+    def deposit(self, amount):
+        self.balance += amount
+        print(f'The account for {self.owner}(Act#: {self.account_no}), now has ${(round(self.balance, 2)):,}')
+        
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print(f'Cannot complete transaction. Account {self.account_no} would be overdrawn.')
+        else:
+            self.balance -= amount
+            print(f'The account for {self.owner}(Act#: {self.account_no}), now has ${(round(self.balance, 2)):,}')
+    
+    def __str__(self):
+        return f'Account {self.account_no} - Balance: {(round(self.balance, 2)):,}'
+    
+ryans_account = BankAccount('Ryan', 345.00)
+julias_account = BankAccount('Julia', 1304.44)
+
+ryans_account.withdraw(500)
+julias_account.withdraw(500)
+
+print(ryans_account)
+print(julias_account)
+
+ryans_account.deposit(1500)
+julias_account.deposit(1500)
+
+print(ryans_account)
+print(julias_account)
 
 class Dog():
     next_id = 1
