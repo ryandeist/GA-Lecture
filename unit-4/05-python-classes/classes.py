@@ -19,6 +19,27 @@ class Dog():
     @classmethod
     def get_total_dogs(cls):
         return cls.next_id - 1
+    
+class ShowDog(Dog):
+    def __init__(self, name, age=0, total_earnings=0):
+        Dog.__init__(self, name, age)
+        self.total_earnings = total_earnings
+        
+    def add_prize_money(self, amount):
+        self.total_earnings += amount
+        print(f'{self.name}\'s new total earnings are ${self.total_earnings}')
+
+winky = ShowDog('Winky', 3, 1000)
+
+# print(winky)
+
+# winky.bark()
+
+# print(winky.total_earnings)
+
+# winky.add_prize_money(500)
+
+# print(winky.total_earnings)
 
 ruby = Dog('Ruby', 3)
 
