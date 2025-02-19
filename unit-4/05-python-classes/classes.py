@@ -7,3 +7,15 @@ class Dog():
         
     def bark(self):
         print(f'{self.name} says woof!')
+        
+ruby = Dog('Ruby', 3)
+
+print(ruby)
+
+print(ruby.name, ruby.age)
+
+ruby.bark()
+
+liam = Dog('Liam')
+
+print(liam.name, liam.age)
