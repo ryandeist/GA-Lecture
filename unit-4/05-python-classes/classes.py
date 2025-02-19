@@ -1,39 +1,55 @@
 import random
 
+# Bank Account Class Exercise
+
 class BankAccount():
-    def __init__(self, owner, balance=0):
+    def __init__(self, owner, balance=0, has_overdraft=False):
         self.owner = owner
         self.balance = balance
+        self.has_overdraft = has_overdraft
         self.account_no = random.randint(111111111, 999999999)
         
     def deposit(self, amount):
         self.balance += amount
         print(f'The account for {self.owner}(Act#: {self.account_no}), now has ${(round(self.balance, 2)):,}')
+        return self.balance
         
     def withdraw(self, amount):
-        if amount > self.balance:
+        if amount > self.balance and self.has_overdraft == False:
             print(f'Cannot complete transaction. Account {self.account_no} would be overdrawn.')
         else:
             self.balance -= amount
             print(f'The account for {self.owner}(Act#: {self.account_no}), now has ${(round(self.balance, 2)):,}')
+            return self.balance
     
     def __str__(self):
         return f'Account {self.account_no} - Balance: {(round(self.balance, 2)):,}'
-    
-ryans_account = BankAccount('Ryan', 345.00)
+
+class SavingsAccount(BankAccount):
+    def withdraw(self):
+        return 'No Withdrawals Permitted.'
+
+ryans_account = BankAccount('Ryan', 345.00, True)
 julias_account = BankAccount('Julia', 1304.44)
+adams_account = BankAccount('Adam', 200)
+ryans_saving = SavingsAccount('Ryan', 1000)
 
 ryans_account.withdraw(500)
 julias_account.withdraw(500)
+adams_account.withdraw(500)
+print(ryans_saving.withdraw())
 
 print(ryans_account)
 print(julias_account)
+print(adams_account)
 
-ryans_account.deposit(1500)
-julias_account.deposit(1500)
+# ryans_account.deposit(1500)
+# julias_account.deposit(1500)
 
-print(ryans_account)
-print(julias_account)
+# print(ryans_account)
+# print(julias_account)
+
+# Dog Class Exercise 
 
 class Dog():
     next_id = 1
@@ -107,6 +123,8 @@ spot = Dog('Spot', 4)
 diogee = Dog('Diogee', 1)
 
 # print(Dog.get_total_dogs())
+
+# Vehicle Class Exercise 
 
 class Vehicle():
     def __init__(self, make, model, running=False):
