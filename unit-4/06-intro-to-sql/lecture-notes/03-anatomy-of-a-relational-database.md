@@ -27,7 +27,7 @@ For example, a particular **artist** is in an **artists** table.
 TABLE: **artists**
 
 | id (PK) | name | nationality |
-| :---------- | :--------- | :------- |
+| :------ | :--- | :---------- |
 | 1 | Prince | American |
 | 2 | Sir Elton John | British |
 
@@ -35,7 +35,7 @@ TABLE: **artists**
 TABLE: **songs**
 
 | id (PK) | name | year_released | artist_id (FK) |
-| :---------- | :--------- | :------- | :-- | :------- |
+| :------ | :--- | :------------ | :------------- |
 | 1 | Tiny Dancer | 1971 | 2 |
 | 2 | Little Red Corvette | 1982 | 1 |
 | 3 | I Would Die 4 U | 1984 | 1 |
